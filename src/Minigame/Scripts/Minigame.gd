@@ -58,9 +58,3 @@ func _on_area_2d_area_entered(area):
 
 func _on_area_2d_area_exited(area):
 	canSpawn = true
-	
-
-func play_sound(sound):
-	if !$AudioStreamPlayer2D.is_playing:
-		$AudioStreamPlayer2D.stream = sound
-		$AudioStreamPlayer2D.play()
