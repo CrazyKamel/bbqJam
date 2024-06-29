@@ -1,5 +1,5 @@
 # Overview
-This is a repository that provides a template for you to start your Godot repositories on GitHub. This repository contains a basic project setup along with CI/CD. By default it will build for windows, linux and the web and upload their artifacts, along with deploying a build to GitHubDock Pages.
+This is a repository that provides a template for you to start your Godot repositories on GitHub. This repository contains a basic project setup along with CI/CD. By default it will build for windows, linux and the web and upload their artifacts, along with deploying a build to GitHubDock Pages. Test
 
 # Docker Image
 This uses a open source docker image made for exporting from godot, it can be found here.
