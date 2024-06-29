@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=10 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
-[ext_resource type="PackedScene" uid="uid://d15n6o6bdmmq2" path="res://src/Computer/computer.tscn" id="3_5jiol"]
+[ext_resource type="Texture2D" uid="uid://detcq4um2blw2" path="res://media/Openspace/office.png" id="3_3gx7i"]
+[ext_resource type="Texture2D" uid="uid://imyvcsymnbv4" path="res://media/Openspace/computer.png" id="3_5ugej"]
 [ext_resource type="Shader" path="res://src/Minigame/Shader/crt.gdshader" id="4_wsan7"]
 [ext_resource type="PackedScene" uid="uid://chyqnaqmaf0wv" path="res://src/Minigame/Scenes/Minigame.tscn" id="5_aqbr6"]
 [ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="5_hbscr"]
@@ -39,7 +40,11 @@ collegue = ExtResource("2_k6vcc")
 [node name="Openspace_Cam" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
-[node name="Computer" parent="Openspace_Cam" instance=ExtResource("3_5jiol")]
+[node name="Office" type="Sprite2D" parent="Openspace_Cam"]
+texture = ExtResource("3_3gx7i")
+
+[node name="Computer" type="Sprite2D" parent="Openspace_Cam"]
+texture = ExtResource("3_5ugej")
 
 [node name="Minigame_Cam" type="Camera2D" parent="."]
 position = Vector2(956, 1857)
