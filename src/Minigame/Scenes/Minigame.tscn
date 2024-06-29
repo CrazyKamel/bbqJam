@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://chyqnaqmaf0wv"]
+[gd_scene load_steps=13 format=3 uid="uid://chyqnaqmaf0wv"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Minigame.gd" id="1_mskjo"]
 [ext_resource type="PackedScene" uid="uid://dr2lx5x2lrj17" path="res://src/Minigame/Scenes/Sausage.tscn" id="1_x8wx6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d2c2loe0mx2j3" path="res://media/Minigame/distrisaucisse.png" id="5_wewfr"]
 [ext_resource type="Texture2D" uid="uid://b45d7tn67m4yu" path="res://media/Minigame/button_up.png" id="6_wh5yq"]
 [ext_resource type="Texture2D" uid="uid://cfb7fb4ex0fkm" path="res://media/Minigame/button_down.png" id="7_0wgun"]
+[ext_resource type="AudioStream" uid="uid://vox4gwnng3sq" path="res://media/Sounds/analog-appliance-button-15-186961.mp3" id="8_c1qwn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tnjnv"]
 
@@ -49,6 +50,9 @@ offset_bottom = -382.0
 texture_normal = ExtResource("6_wh5yq")
 texture_pressed = ExtResource("7_0wgun")
 stretch_mode = 0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/SausageSpawner"]
+stream = ExtResource("8_c1qwn")
 
 [node name="SpawnPosition" type="Node2D" parent="Control"]
 position = Vector2(-560.563, -218)
