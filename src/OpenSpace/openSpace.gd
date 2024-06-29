@@ -4,7 +4,6 @@ var confirmQuit = preload("res://src/ConfirmQuit/confirmQuit.tscn")
 @export var collegue: PackedScene
 var timer := Timer.new()
 
-var score = 0
 var confirmQuitCheck = true
 
 # Define the key for switching views
@@ -52,9 +51,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("space"):
-		score += 20
-		if score%100 == 0:
-			print(score)
+		Global.openspaceScore += 20
+		if Global.openspaceScore%100 == 0:
+			print(Global.openspaceScore)
 	pass
 
 func _input(event):
