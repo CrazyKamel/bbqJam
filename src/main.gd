@@ -12,8 +12,7 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
-	#Global.goto_scene("res://src/game.tscn")
-	pass
+	Global.goto_scene("res://src/OpenSpace/openSpace.tscn")
 
 
 func _on_quit_button_pressed():

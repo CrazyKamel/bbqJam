@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=3 format=3 uid="uid://brs6u78mwggbp"]
+
 [ext_resource type="Script" path="res://src/main.gd" id="1_bnnuh"]
 [ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="2_l6o3g"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_bnnuh")
-
 
 [node name="MenuBackground" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
