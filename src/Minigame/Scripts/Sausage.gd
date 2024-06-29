@@ -4,7 +4,7 @@ signal clicked
 
 var held = false
 var cooking = false
-
+var burning_sound = preload("res://media/Sounds/Sausage/8bit-burning.mp3")
 # 0 : Raw, 1 : Cooking, 2 : Cooked, 3 : Burnt
 var state = 0
 
@@ -36,6 +36,8 @@ func _process(delta):
 				print("Sausage burnt!")
 				$AnimatedSprite2D.animation = "Burnt"
 				$CPUParticles2D.emitting = true
+				$SausageAudio.stream = burning_sound
+				$SausageAudio.play()
 		3:
 			if ( time_cooking >= 30 ):
 				drop()

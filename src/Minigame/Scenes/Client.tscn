@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwmjgrhsu0gwc"]
+[gd_scene load_steps=6 format=3 uid="uid://dxi0bcv16xap0"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Client.gd" id="1_uih7l"]
 [ext_resource type="Texture2D" uid="uid://7sbd3w7kmbtx" path="res://media/Minigame/bob.png" id="2_nmp4q"]
+[ext_resource type="AudioStream" uid="uid://377psjtksfda" path="res://media/Sounds/coin-collect.mp3" id="3_b7p7i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ff8r"]
 radius = 53.0
@@ -42,6 +43,10 @@ shape = SubResource("RectangleShape2D_dylj5")
 [node name="PlateCollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-45.5, -94.75)
 shape = SubResource("RectangleShape2D_dylj5")
+
+[node name="PointSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(446, 0)
+stream = ExtResource("3_b7p7i")
 
 [connection signal="body_entered" from="PlateArea2D2" to="." method="_on_plate_area_2d_2_body_entered"]
 [connection signal="body_exited" from="PlateArea2D2" to="." method="_on_plate_area_2d_2_body_exited"]
