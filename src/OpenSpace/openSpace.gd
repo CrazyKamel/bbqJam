@@ -7,6 +7,14 @@ var timer := Timer.new()
 var score = 0
 var confirmQuitCheck = true
 
+# Define the key for switching views
+const SWITCH_VIEW_KEY = KEY_TAB
+var officeZoomed = false
+
+@onready var openspace_cam = $Openspace_Cam
+@onready var minigame_cam = $Minigame_Cam
+
+
 func collegueDiedRIP():
 	print("HE DIED NOOOOOOOOOOOOOOOOO")
 	if Input.is_action_pressed("space"):
@@ -31,6 +39,7 @@ func _spawnCollegue():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	openspace_cam.make_current()
 	timer.one_shot = false
 	timer.wait_time = randi_range(1, 5) 
 	timer.connect("timeout", _spawnCollegue)
@@ -52,6 +61,17 @@ func _input(event):
 		var confirmQuitInstance = confirmQuit.instantiate()
 		add_child(confirmQuitInstance)
 		confirmQuitCheck = false
+	if event is InputEventKey:
+		if event.pressed:
+			if event.keycode == SWITCH_VIEW_KEY:
+				# officeZoomed = !officeZoomed
+				swapCamera()
+
+func swapCamera():
+	if openspace_cam.is_current():
+		minigame_cam.make_current()
+	else:
+		openspace_cam.make_current()
 
 func subscribeCancelQuit():
 	confirmQuitCheck = true

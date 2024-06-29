@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://chyqnaqmaf0wv"]
+[gd_scene load_steps=11 format=3 uid="uid://chyqnaqmaf0wv"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Minigame.gd" id="1_mskjo"]
 [ext_resource type="PackedScene" uid="uid://dr2lx5x2lrj17" path="res://src/Minigame/Scenes/Sausage.tscn" id="1_x8wx6"]
+[ext_resource type="Texture2D" uid="uid://bvuqsq2f5lwv2" path="res://media/Minigame/Background.png" id="3_8s0t2"]
 [ext_resource type="PackedScene" uid="uid://dpjcoseqrw1uj" path="res://src/Minigame/Scenes/destroy_zone.tscn" id="3_emduw"]
-[ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="3_qmg7u"]
+[ext_resource type="Texture2D" uid="uid://cruyk3u8cy2pn" path="res://media/Minigame/Sun.png" id="4_txwue"]
 [ext_resource type="PackedScene" uid="uid://bdli77reuq25y" path="res://src/Minigame/Scenes/Grill.tscn" id="4_yk232"]
+[ext_resource type="Texture2D" uid="uid://d2c2loe0mx2j3" path="res://media/Minigame/distrisaucisse.png" id="5_wewfr"]
+[ext_resource type="Texture2D" uid="uid://b45d7tn67m4yu" path="res://media/Minigame/button_up.png" id="6_wh5yq"]
+[ext_resource type="Texture2D" uid="uid://cfb7fb4ex0fkm" path="res://media/Minigame/button_down.png" id="7_0wgun"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tnjnv"]
 
@@ -14,16 +18,18 @@ sausage = ExtResource("1_x8wx6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -1
-offset_left = -960.0
-offset_top = -540.0
-offset_right = -920.0
-offset_bottom = -500.0
-scale = Vector2(48, 27.0001)
-mouse_filter = 2
-color = Color(0.497326, 0.996085, 0.770546, 1)
-metadata/_edit_group_ = true
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(6.56, 6.56)
+texture = ExtResource("3_8s0t2")
+
+[node name="Sun" type="Sprite2D" parent="Background"]
+position = Vector2(107.927, -52.7439)
+texture = ExtResource("4_txwue")
+
+[node name="Distrib" type="Sprite2D" parent="."]
+position = Vector2(-556.563, -387)
+scale = Vector2(5.55511, 5.55511)
+texture = ExtResource("5_wewfr")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -33,11 +39,16 @@ offset_bottom = 40.0
 
 [node name="SausageSpawner" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = -806.0
-offset_top = -507.0
-offset_right = -678.0
-offset_bottom = -379.0
-texture_normal = ExtResource("3_qmg7u")
+offset_left = -598.563
+offset_top = -459.0
+offset_right = -521.563
+offset_bottom = -382.0
+texture_normal = ExtResource("6_wh5yq")
+texture_pressed = ExtResource("7_0wgun")
+stretch_mode = 0
+
+[node name="SpawnPosition" type="Node2D" parent="Control"]
+position = Vector2(-560.563, -218)
 
 [node name="ObjectDestroy" type="Node2D" parent="."]
 
