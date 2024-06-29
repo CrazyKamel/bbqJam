@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://dr2lx5x2lrj17"]
+
+[ext_resource type="Script" path="res://src/Minigame/Scripts/Sausage.gd" id="1_lbmo5"]
+[ext_resource type="Texture2D" uid="uid://dc4ixyat03lu0" path="res://media/Minigame/sausages.png" id="2_e3bi0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vf5m"]
+atlas = ExtResource("2_e3bi0")
+region = Rect2(84, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_854ub"]
+atlas = ExtResource("2_e3bi0")
+region = Rect2(56, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ela5w"]
+atlas = ExtResource("2_e3bi0")
+region = Rect2(28, 0, 28, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldvot"]
+atlas = ExtResource("2_e3bi0")
+region = Rect2(0, 0, 28, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2eoqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vf5m")
+}],
+"loop": true,
+"name": &"Burnt",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_854ub")
+}],
+"loop": true,
+"name": &"Cooked",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ela5w")
+}],
+"loop": true,
+"name": &"Cooking",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldvot")
+}],
+"loop": true,
+"name": &"Raw",
+"speed": 0.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_albke"]
+radius = 15.0
+height = 66.0
+
+[node name="Sausage" type="RigidBody2D" groups=["pickable"]]
+collision_layer = 7
+collision_mask = 3
+input_pickable = true
+freeze_mode = 1
+continuous_cd = 1
+script = ExtResource("1_lbmo5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_2eoqv")
+animation = &"Raw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_albke")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

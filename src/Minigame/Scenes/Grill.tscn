@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdli77reuq25y"]
+
+[ext_resource type="Texture2D" uid="uid://byrdnrsl7ob8k" path="res://media/Minigame/grill.png" id="1_px55a"]
+[ext_resource type="Script" path="res://src/Minigame/Scripts/Grill.gd" id="2_hq0ya"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rtejl"]
+radius = 12.0
+height = 208.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xtwn4"]
+height = 202.0
+
+[node name="Grill" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_px55a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_rtejl")
+
+[node name="Grill" type="Area2D" parent="."]
+collision_mask = 4
+script = ExtResource("2_hq0ya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grill"]
+position = Vector2(1, -17)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_xtwn4")
+debug_color = Color(0.971325, 0.117073, 0.315356, 0.42)
+
+[connection signal="body_entered" from="Grill" to="Grill" method="_on_body_entered"]
+[connection signal="body_exited" from="Grill" to="Grill" method="_on_body_exited"]

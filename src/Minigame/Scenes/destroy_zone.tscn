@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpjcoseqrw1uj"]
+
+[ext_resource type="Script" path="res://src/Minigame/Scripts/destroy_zone.gd" id="1_snwbd"]
+
+[node name="DestroyZone" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_snwbd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
