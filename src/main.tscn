@@ -1,11 +1,28 @@
 [gd_scene load_steps=3 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_bnnuh"]
-[ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="1_xhw8e"]
+[ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="2_l6o3g"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node" type="Node"]
 script = ExtResource("1_bnnuh")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(552, 307)
-texture = ExtResource("1_xhw8e")
+[node name="MenuBackground" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_l6o3g")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 590.0
+offset_top = 494.0
+offset_right = 1411.0
+offset_bottom = 711.0
+text = "START"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 590.0
+offset_top = 748.0
+offset_right = 1411.0
+offset_bottom = 965.0
+text = "QUIT"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
