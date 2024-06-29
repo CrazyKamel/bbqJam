@@ -1,18 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://chyqnaqmaf0wv"]
+[gd_scene load_steps=7 format=3 uid="uid://chyqnaqmaf0wv"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Minigame.gd" id="1_mskjo"]
 [ext_resource type="PackedScene" uid="uid://dr2lx5x2lrj17" path="res://src/Minigame/Scenes/Sausage.tscn" id="1_x8wx6"]
 [ext_resource type="PackedScene" uid="uid://dpjcoseqrw1uj" path="res://src/Minigame/Scenes/destroy_zone.tscn" id="3_emduw"]
+[ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="3_qmg7u"]
 [ext_resource type="PackedScene" uid="uid://bdli77reuq25y" path="res://src/Minigame/Scenes/Grill.tscn" id="4_yk232"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tnjnv"]
 
 [node name="Minigame" type="Node2D"]
 script = ExtResource("1_mskjo")
+sausage = ExtResource("1_x8wx6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="ObjectDestroy" type="Node" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -920.0
+offset_bottom = -500.0
+scale = Vector2(48, 27.0001)
+mouse_filter = 2
+color = Color(0.497326, 0.996085, 0.770546, 1)
+metadata/_edit_group_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SausageSpawner" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = -806.0
+offset_top = -507.0
+offset_right = -678.0
+offset_bottom = -379.0
+texture_normal = ExtResource("3_qmg7u")
+
+[node name="ObjectDestroy" type="Node2D" parent="."]
 
 [node name="DestroyZone" parent="ObjectDestroy" instance=ExtResource("3_emduw")]
 position = Vector2(-2, 609)
@@ -20,20 +47,8 @@ position = Vector2(-2, 609)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectDestroy/DestroyZone"]
 shape = SubResource("WorldBoundaryShape2D_tnjnv")
 
-[node name="Food" type="Node" parent="."]
-
-[node name="Sausage3" parent="Food" instance=ExtResource("1_x8wx6")]
-position = Vector2(-631, -112)
-
-[node name="Sausage" parent="Food" instance=ExtResource("1_x8wx6")]
-position = Vector2(-535, -33)
-
-[node name="Sausage2" parent="Food" instance=ExtResource("1_x8wx6")]
-position = Vector2(-339, -257)
-
-[node name="Sausage4" parent="Food" instance=ExtResource("1_x8wx6")]
-position = Vector2(-787, -234)
-
 [node name="Grill" parent="." instance=ExtResource("4_yk232")]
-position = Vector2(-540, 220)
-scale = Vector2(6.45043, 1)
+position = Vector2(-540, 224)
+scale = Vector2(3.98142, 3.98142)
+
+[connection signal="pressed" from="Control/SausageSpawner" to="." method="_on_sausage_spawner_pressed"]

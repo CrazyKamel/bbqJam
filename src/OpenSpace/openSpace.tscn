@@ -1,18 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=6 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
 [ext_resource type="PackedScene" uid="uid://d15n6o6bdmmq2" path="res://src/Computer/computer.tscn" id="3_5jiol"]
 [ext_resource type="Script" path="res://src/OpenSpace/Camera2D.gd" id="4_kgnmf"]
+[ext_resource type="PackedScene" uid="uid://chyqnaqmaf0wv" path="res://src/Minigame/Scenes/Minigame.tscn" id="5_aqbr6"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_u6x1y")
 collegue = ExtResource("2_k6vcc")
 
-[node name="Computer" parent="." instance=ExtResource("3_5jiol")]
-position = Vector2(961, 448)
-
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+[node name="Openspace_Cam" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(960, 540)
 script = ExtResource("4_kgnmf")
-target = NodePath("../Computer")
+target = NodePath("Computer")
+
+[node name="Computer" parent="Openspace_Cam" instance=ExtResource("3_5jiol")]
+
+[node name="Minigame_Cam" type="Camera2D" parent="."]
+position = Vector2(956, 1857)
+
+[node name="Minigame" parent="Minigame_Cam" instance=ExtResource("5_aqbr6")]
+position = Vector2(0, -7)

@@ -55,8 +55,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_albke"]
-radius = 13.0
-height = 60.0
+radius = 15.0
+height = 66.0
 
 [node name="Sausage" type="RigidBody2D" groups=["pickable"]]
 collision_layer = 7
@@ -67,7 +67,7 @@ continuous_cd = 1
 script = ExtResource("1_lbmo5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2.26667, 2.26667)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_2eoqv")
 animation = &"Raw"
 

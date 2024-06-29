@@ -12,6 +12,9 @@ var time_cooking = 0.0
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
+func _ready():
+	get_parent().connect_to_pickable(self)
+
 func _process(delta):
 	if cooking:
 		time_cooking += delta
@@ -36,6 +39,7 @@ func _process(delta):
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
+			print("Sosej clicked")
 			clicked.emit(self)
 
 func _physics_process(delta):
