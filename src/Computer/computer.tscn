@@ -15,3 +15,5 @@ texture = ExtResource("1_y2d4n")
 [node name="game" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_4pkox")
+
+[node name="Timer" type="Timer" parent="."]
