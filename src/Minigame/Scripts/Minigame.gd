@@ -9,7 +9,7 @@ var canSpawn = true
 var client = preload("res://src/Minigame/Scenes/Client.tscn")
 
 func _process(delta):
-	$Label.text	 = "Score : " + str(Global.minigameScore)
+	$Label.text = "Score : " + str(Global.minigameScore)
 
 func _ready():
 	for node in get_tree().get_nodes_in_group("pickable"):
