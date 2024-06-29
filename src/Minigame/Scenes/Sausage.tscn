@@ -62,6 +62,7 @@ height = 66.0
 collision_layer = 7
 collision_mask = 3
 input_pickable = true
+can_sleep = false
 freeze_mode = 1
 continuous_cd = 1
 script = ExtResource("1_lbmo5")
