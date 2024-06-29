@@ -35,6 +35,9 @@ func _process(delta):
 				state = 3
 				print("Sausage burnt!")
 				$AnimatedSprite2D.animation = "Burnt"
+		3:
+			if ( time_cooking >= 25 ):
+				queue_free()
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
