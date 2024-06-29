@@ -45,6 +45,7 @@ func _ready():
 	timer.connect("timeout", _spawnCollegue)
 	add_child(timer)
 	timer.start()
+	$Clock.gameTimesUp.connect(onGameEnd);
 	pass
 
 
@@ -75,3 +76,6 @@ func swapCamera():
 
 func subscribeCancelQuit():
 	confirmQuitCheck = true
+	
+func onGameEnd():
+	print("jeu fini")

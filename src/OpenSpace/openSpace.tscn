@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=7 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
 [ext_resource type="PackedScene" uid="uid://d15n6o6bdmmq2" path="res://src/Computer/computer.tscn" id="3_5jiol"]
 [ext_resource type="PackedScene" uid="uid://chyqnaqmaf0wv" path="res://src/Minigame/Scenes/Minigame.tscn" id="5_aqbr6"]
 [ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="5_hbscr"]
+[ext_resource type="PackedScene" uid="uid://vgbgtyrk7qv6" path="res://src/Clock/clock.tscn" id="6_pfdq3"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_u6x1y")
@@ -25,3 +26,7 @@ position = Vector2(0, -7)
 show_behind_parent = true
 texture = ExtResource("5_hbscr")
 centered = false
+
+[node name="Clock" parent="." instance=ExtResource("6_pfdq3")]
+position = Vector2(843, 194)
+scale = Vector2(0.443159, 0.443159)
