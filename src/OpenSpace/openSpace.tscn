@@ -1,27 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=10 format=3 uid="uid://i4iw8i3urktw"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
 [ext_resource type="PackedScene" uid="uid://d15n6o6bdmmq2" path="res://src/Computer/computer.tscn" id="3_5jiol"]
 [ext_resource type="PackedScene" uid="uid://chyqnaqmaf0wv" path="res://src/Minigame/Scenes/Minigame.tscn" id="5_aqbr6"]
-[ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="5_hbscr"]
+[ext_resource type="Texture2D" uid="uid://1t42qeso7ddf" path="res://media/bg-moche.png" id="5_jauns"]
+[ext_resource type="Texture2D" uid="uid://dyrvcjighccnl" path="res://media/pc-moche.png" id="6_77xk2"]
+[ext_resource type="Script" path="res://src/OpenSpace/SubViewport.gd" id="6_vrmti"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7rf51"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f5p7o"]
+viewport_path = NodePath("Node2D/SubViewport")
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-2305, 369)
 script = ExtResource("1_u6x1y")
 collegue = ExtResource("2_k6vcc")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(2305, -369)
+
+[node name="SubViewport" type="SubViewport" parent="Node2D"]
+disable_3d = true
+snap_2d_transforms_to_pixel = true
+gui_disable_input = true
+size_2d_override_stretch = true
+script = ExtResource("6_vrmti")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/SubViewport"]
+mesh = SubResource("PlaneMesh_7rf51")
+
+[node name="Camera2D" type="Camera2D" parent="Node2D/SubViewport"]
+position = Vector2(1912, 3714)
+
+[node name="Minigame" parent="." instance=ExtResource("5_aqbr6")]
+position = Vector2(1912, 3707)
 
 [node name="Openspace_Cam" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
 [node name="Computer" parent="Openspace_Cam" instance=ExtResource("3_5jiol")]
-
-[node name="Minigame_Cam" type="Camera2D" parent="."]
-position = Vector2(956, 1857)
-
-[node name="Minigame" parent="Minigame_Cam" instance=ExtResource("5_aqbr6")]
-position = Vector2(0, -7)
+position = Vector2(11, 125)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
-texture = ExtResource("5_hbscr")
+position = Vector2(4, 4)
+scale = Vector2(2.89867, 2.89867)
+texture = ExtResource("5_jauns")
 centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(325, 399)
+scale = Vector2(1.88, 1.88)
+texture = ExtResource("6_77xk2")
+centered = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 422.0
+offset_top = 316.0
+offset_right = 2212.0
+offset_bottom = 1240.0
+texture = SubResource("ViewportTexture_f5p7o")
+expand_mode = 1
+
+[node name="Minigame_Cam" type="Camera2D" parent="."]
+position = Vector2(1912, 3714)

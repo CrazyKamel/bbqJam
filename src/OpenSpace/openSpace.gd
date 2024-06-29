@@ -15,6 +15,7 @@ var officeZoomed = false
 @onready var minigame_cam = $Minigame_Cam
 
 
+
 func collegueDiedRIP():
 	print("HE DIED NOOOOOOOOOOOOOOOOO")
 	if Input.is_action_pressed("space"):
@@ -24,8 +25,6 @@ func collegueDiedRIP():
 		add_child(label)
 		timer.stop()
 		# GAME OVER
-
-
 	pass
 
 func _spawnCollegue():
@@ -34,7 +33,7 @@ func _spawnCollegue():
 	#collegue1.position = Vector2(randf_range(0.0,1920.0), randf_range(0.0, 1080.0))
 	collegue1.position = Vector2(50,50)
 	add_child(collegue1)
-	timer.wait_time = randi_range(1, 3)
+	timer.wait_time = randi_range(3, 5)
 	pass
 
 # Called when the node enters the scene tree for the first time.
@@ -45,6 +44,9 @@ func _ready():
 	timer.connect("timeout", _spawnCollegue)
 	add_child(timer)
 	timer.start()
+	#var cam_rid = minigame_cam.get_camera_rid()
+	#var viewport_rid = viewport_ecran.get_viewport_rid()
+	#RenderingServer.viewport_attach_camera(viewport_rid, cam_rid)
 	pass
 
 
@@ -68,6 +70,7 @@ func _input(event):
 				swapCamera()
 
 func swapCamera():
+	print("Swapped")
 	if openspace_cam.is_current():
 		minigame_cam.make_current()
 	else:
