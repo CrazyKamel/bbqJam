@@ -25,5 +25,5 @@ func _unhandled_input(event):
 
 func _on_sausage_spawner_pressed():
 	var food_item = sausage.instantiate()
-	food_item.position = $Control/SausageSpawner.position
+	food_item.position = $Control/SpawnPosition.position
 	add_child(food_item)
