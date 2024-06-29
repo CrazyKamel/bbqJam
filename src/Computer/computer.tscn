@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d15n6o6bdmmq2"]
+
+[ext_resource type="Script" path="res://src/Computer/computer.gd" id="1_8g8vq"]
+[ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="1_y2d4n"]
+[ext_resource type="Texture2D" uid="uid://b718baisdts41" path="res://media/placeHolder.jpg" id="2_4pkox"]
+
+[node name="Computer" type="Node2D" node_paths=PackedStringArray("sprite1", "sprite2")]
+script = ExtResource("1_8g8vq")
+sprite1 = NodePath("Icon")
+sprite2 = NodePath("game")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_y2d4n")
+
+[node name="game" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_4pkox")

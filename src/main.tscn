@@ -1,16 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_bnnuh"]
-[ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="1_xhw8e"]
 [ext_resource type="Script" path="res://src/Camera2D.gd" id="3_phqli"]
+[ext_resource type="PackedScene" uid="uid://d15n6o6bdmmq2" path="res://src/Computer/computer.tscn" id="3_r6xti"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bnnuh")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(501, -210)
-texture = ExtResource("1_xhw8e")
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("3_phqli")
-target = NodePath("../Icon")
+target = NodePath("../Computer")
+
+[node name="Computer" parent="." instance=ExtResource("3_r6xti")]
+position = Vector2(442, -276)
