@@ -5,7 +5,7 @@ const SWITCH_VIEW_KEY = KEY_TAB
 var officeZoomed = false
 
 # Define the zoom increment
-const ZOOM_POWER = 10
+var ZOOM_POWER = 2
 
 # Store the original zoom level and position
 var original_zoom = Vector2(1, 1)
