@@ -2,6 +2,9 @@ extends Node
 
 var current_scene = null
 
+var minigameScore = 0
+var openspaceScore = 0
+
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 
