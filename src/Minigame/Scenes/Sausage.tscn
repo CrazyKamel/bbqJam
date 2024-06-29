@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Sausage.gd" id="1_lbmo5"]
 [ext_resource type="Texture2D" uid="uid://dc4ixyat03lu0" path="res://media/Minigame/sausages.png" id="2_e3bi0"]
+
 [ext_resource type="Texture2D" uid="uid://byfxq78laf43u" path="res://media/Minigame/smoke.png" id="3_gw1kq"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2vf5m"]
 atlas = ExtResource("2_e3bi0")
