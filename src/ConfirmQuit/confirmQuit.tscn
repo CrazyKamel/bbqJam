@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://do8f3rxt2wwpn"]
+
+[ext_resource type="Script" path="res://src/ConfirmQuit/confirmQuit.gd" id="1_mw81b"]
+
+[node name="ConfirmQuit" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+script = ExtResource("1_mw81b")
+
+[node name="YesButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 757.0
+offset_top = 590.0
+offset_right = 957.0
+offset_bottom = 715.0
+text = "YES"
+
+[node name="NoButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1081.0
+offset_top = 590.0
+offset_right = 1281.0
+offset_bottom = 715.0
+text = "NO
+"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 644.0
+offset_top = 467.0
+offset_right = 842.0
+offset_bottom = 494.0
+scale = Vector2(3.835, 3.835)
+text = "DO YOU WANT TO QUIT ?"
+
+[connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

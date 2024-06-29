@@ -1,9 +1,11 @@
 extends Node2D
 
+var confirmQuit = preload("res://src/ConfirmQuit/confirmQuit.tscn")
 @export var collegue: PackedScene
 var timer := Timer.new()
 
 var score = 0
+var confirmQuitCheck = true
 
 func collegueDiedRIP():
 	print("HE DIED NOOOOOOOOOOOOOOOOO")
@@ -44,3 +46,12 @@ func _process(delta):
 		if score%100 == 0:
 			print(score)
 	pass
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel") && confirmQuitCheck:
+		var confirmQuitInstance = confirmQuit.instantiate()
+		add_child(confirmQuitInstance)
+		confirmQuitCheck = false
+
+func subscribeCancelQuit():
+	confirmQuitCheck = true
