@@ -50,10 +50,10 @@ position = Vector2(0, -7)
 [node name="ColorRect" type="ColorRect" parent="Minigame_Cam"]
 z_index = 3
 material = SubResource("ShaderMaterial_ep8o5")
-offset_left = -957.0
-offset_top = -547.0
-offset_right = 961.0
-offset_bottom = 538.0
+offset_left = -968.0
+offset_top = -561.0
+offset_right = 976.0
+offset_bottom = 546.0
 mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

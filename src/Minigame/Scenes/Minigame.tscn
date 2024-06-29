@@ -22,7 +22,7 @@ sausage = ExtResource("1_x8wx6")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(6.56, 6.56)
+scale = Vector2(6.75625, 6.83636)
 texture = ExtResource("3_8s0t2")
 
 [node name="Sun" type="Sprite2D" parent="Background"]
