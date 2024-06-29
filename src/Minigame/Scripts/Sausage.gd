@@ -38,6 +38,7 @@ func _process(delta):
 				$CPUParticles2D.emitting = true
 		3:
 			if ( time_cooking >= 30 ):
+				Global.minigameScore-=5
 				drop()
 				get_parent().disconnect_from_pickable(self)
 				call_deferred("free")

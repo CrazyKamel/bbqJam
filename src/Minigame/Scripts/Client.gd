@@ -21,16 +21,25 @@ func _process(delta):
 
 
 func _on_plate_area_2d_2_body_entered(body):
-	if ! body.cooking && body.state == 2:
+	if ! body.cooking:
 		body.input_pickable = false
 		timer.start()
 		sausage = body
-
 
 func _on_plate_area_2d_2_body_exited(body):
 	body.input_pickable = true
 
 
 func _on_timer_timeout():
-	sausage.queue_free()
+	if sausage != null:
+		sausage.queue_free()
+		match sausage.state:
+			0:
+				Global.minigameScore -=10
+			1:
+				Global.minigameScore +=15
+			2:
+				Global.minigameScore +=10
+			3:
+				Global.minigameScore -= 20
 	queue_free()
