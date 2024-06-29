@@ -21,28 +21,30 @@ func _process(delta):
 
 	match state:
 		0:
-			if ( time_cooking >= 0.5 ):
+			if ( time_cooking >= 5 ):
 				state = 1
 				print("Sausage cooking!")
 				$AnimatedSprite2D.animation = "Cooking"
 		1:
-			if ( time_cooking >= 10 ):
+			if ( time_cooking >= 15 ):
 				state = 2
 				print("Sausage cooked!")
 				$AnimatedSprite2D.animation = "Cooked"
 		2:
-			if ( time_cooking >= 20 ):
+			if ( time_cooking >= 25 ):
 				state = 3
 				print("Sausage burnt!")
 				$AnimatedSprite2D.animation = "Burnt"
+				$CPUParticles2D.emitting = true
 		3:
-			if ( time_cooking >= 25 ):
-				queue_free()
+			if ( time_cooking >= 30 ):
+				drop()
+				get_parent().disconnect_from_pickable(self)
+				call_deferred("free")
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			print("Sosej clicked")
 			clicked.emit(self)
 
 func _physics_process(delta):
