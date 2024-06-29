@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://chyqnaqmaf0wv"]
+
+[ext_resource type="PackedScene" uid="uid://b67mi07kugbgu" path="res://src/Minigame/Objects/Sausage.tscn" id="1_axwol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e5qt"]
+size = Vector2(698, 756)
+
+[node name="Minigame" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Food" type="Node" parent="."]
+
+[node name="Sausage" parent="Food" instance=ExtResource("1_axwol")]
+position = Vector2(-750, -370)
+
+[node name="Sausage2" parent="Food" instance=ExtResource("1_axwol")]
+position = Vector2(-318, -368)
+
+[node name="Sausage3" parent="Food" instance=ExtResource("1_axwol")]
+position = Vector2(-531, -370)
+
+[node name="Zones" type="Node" parent="."]
+
+[node name="GrillZone" type="Node2D" parent="Zones"]
+position = Vector2(-517, 94)
+
+[node name="Area2D" type="Area2D" parent="Zones/GrillZone"]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zones/GrillZone/Area2D"]
+shape = SubResource("RectangleShape2D_6e5qt")
+
+[node name="ColorRect" type="ColorRect" parent="Zones/GrillZone"]
+offset_left = -354.0
+offset_top = -378.0
+offset_right = 351.0
+offset_bottom = 382.0
+mouse_filter = 2
+color = Color(0.907865, 0.424077, 0.365601, 1)
