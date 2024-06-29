@@ -58,10 +58,11 @@ texture = ExtResource("6_77xk2")
 centered = false
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 422.0
-offset_top = 316.0
-offset_right = 2212.0
-offset_bottom = 1240.0
+visible = false
+offset_left = 798.0
+offset_top = 566.0
+offset_right = 1140.0
+offset_bottom = 777.0
 texture = SubResource("ViewportTexture_f5p7o")
 expand_mode = 1
 
