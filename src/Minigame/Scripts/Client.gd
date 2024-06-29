@@ -21,7 +21,7 @@ func _process(delta):
 
 
 func _on_plate_area_2d_2_body_entered(body):
-	if ! body.cooking:
+	if ! body.cooking && ! body.held:
 		body.input_pickable = false
 		$PointSoundPlayer.play()
 		timer.start()
