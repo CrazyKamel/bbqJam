@@ -77,4 +77,5 @@ func subscribeCancelQuit():
 	confirmQuitCheck = true
 	
 func onGameEnd():
-	print("jeu fini")
+		Global.goto_scene("res://src/backgroundEnd/end.tscn")
+		
