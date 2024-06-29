@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjm1hhd336cw0"]
+[gd_scene load_steps=3 format=3 uid="uid://bjm1hhd336cw0"]
 
 [ext_resource type="Texture2D" uid="uid://bdvx58rwnaeev" path="res://media/icon.svg" id="1_mid5c"]
+[ext_resource type="Script" path="res://src/Collegue/collegue.gd" id="1_nhxqq"]
 
 [node name="Collegue" type="Node2D"]
+script = ExtResource("1_nhxqq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(116, 87)
