@@ -75,6 +75,13 @@ scale = Vector2(3.98142, 3.98142)
 position = Vector2(1118, 193)
 shape = SubResource("RectangleShape2D_v2n33")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 539.0
+offset_top = -515.0
+offset_right = 689.0
+offset_bottom = -468.0
+scale = Vector2(3, 3)
+
 [connection signal="pressed" from="Control/SausageSpawner" to="." method="_on_sausage_spawner_pressed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
