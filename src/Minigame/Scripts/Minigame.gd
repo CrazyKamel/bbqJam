@@ -12,7 +12,6 @@ func connect_to_pickable(object):
 	object.clicked.connect(_on_pickable_clicked)
 
 func _on_pickable_clicked(object):
-	print("Un truc")
 	if !held_object:
 		object.pickup()
 		held_object = object
