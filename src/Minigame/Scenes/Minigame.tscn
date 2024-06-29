@@ -1,40 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://chyqnaqmaf0wv"]
+[gd_scene load_steps=6 format=3 uid="uid://chyqnaqmaf0wv"]
 
-[ext_resource type="PackedScene" uid="uid://b67mi07kugbgu" path="res://src/Minigame/Objects/Sausage.tscn" id="1_axwol"]
+[ext_resource type="Script" path="res://src/Minigame/Scripts/Minigame.gd" id="1_mskjo"]
+[ext_resource type="PackedScene" uid="uid://dr2lx5x2lrj17" path="res://src/Minigame/Scenes/Sausage.tscn" id="1_x8wx6"]
+[ext_resource type="PackedScene" uid="uid://dpjcoseqrw1uj" path="res://src/Minigame/Scenes/destroy_zone.tscn" id="3_emduw"]
+[ext_resource type="PackedScene" uid="uid://bdli77reuq25y" path="res://src/Minigame/Scenes/Grill.tscn" id="4_yk232"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e5qt"]
-size = Vector2(698, 756)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tnjnv"]
 
 [node name="Minigame" type="Node2D"]
+script = ExtResource("1_mskjo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="ObjectDestroy" type="Node" parent="."]
+
+[node name="DestroyZone" parent="ObjectDestroy" instance=ExtResource("3_emduw")]
+position = Vector2(-2, 609)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectDestroy/DestroyZone"]
+shape = SubResource("WorldBoundaryShape2D_tnjnv")
+
 [node name="Food" type="Node" parent="."]
 
-[node name="Sausage" parent="Food" instance=ExtResource("1_axwol")]
-position = Vector2(-750, -370)
+[node name="Sausage3" parent="Food" instance=ExtResource("1_x8wx6")]
+position = Vector2(-631, -112)
 
-[node name="Sausage2" parent="Food" instance=ExtResource("1_axwol")]
-position = Vector2(-318, -368)
+[node name="Sausage" parent="Food" instance=ExtResource("1_x8wx6")]
+position = Vector2(-535, -33)
 
-[node name="Sausage3" parent="Food" instance=ExtResource("1_axwol")]
-position = Vector2(-531, -370)
+[node name="Sausage2" parent="Food" instance=ExtResource("1_x8wx6")]
+position = Vector2(-339, -257)
 
-[node name="Zones" type="Node" parent="."]
+[node name="Sausage4" parent="Food" instance=ExtResource("1_x8wx6")]
+position = Vector2(-787, -234)
 
-[node name="GrillZone" type="Node2D" parent="Zones"]
-position = Vector2(-517, 94)
-
-[node name="Area2D" type="Area2D" parent="Zones/GrillZone"]
-input_pickable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Zones/GrillZone/Area2D"]
-shape = SubResource("RectangleShape2D_6e5qt")
-
-[node name="ColorRect" type="ColorRect" parent="Zones/GrillZone"]
-offset_left = -354.0
-offset_top = -378.0
-offset_right = 351.0
-offset_bottom = 382.0
-mouse_filter = 2
-color = Color(0.907865, 0.424077, 0.365601, 1)
+[node name="Grill" parent="." instance=ExtResource("4_yk232")]
+position = Vector2(-540, 220)
+scale = Vector2(6.45043, 1)
