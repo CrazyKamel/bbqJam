@@ -4,35 +4,36 @@
 
 [node name="ConfirmQuit" type="Control"]
 layout_mode = 3
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1920.0
-offset_bottom = -1080.0
+anchors_preset = 0
+offset_left = 967.0
+offset_top = 625.0
+offset_right = 967.0
+offset_bottom = 625.0
 script = ExtResource("1_mw81b")
 
 [node name="YesButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 757.0
-offset_top = 590.0
-offset_right = 957.0
-offset_bottom = 715.0
+offset_left = -246.0
+offset_top = 18.0
+offset_right = -46.0
+offset_bottom = 143.0
 text = "YES"
 
 [node name="NoButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1081.0
-offset_top = 590.0
-offset_right = 1281.0
-offset_bottom = 715.0
+offset_left = 78.0
+offset_top = 18.0
+offset_right = 278.0
+offset_bottom = 143.0
 text = "NO
 "
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 644.0
-offset_top = 467.0
-offset_right = 842.0
-offset_bottom = 494.0
+offset_left = -359.0
+offset_top = -105.0
+offset_right = -161.0
+offset_bottom = -78.0
 scale = Vector2(3.835, 3.835)
 text = "DO YOU WANT TO QUIT ?"
 
