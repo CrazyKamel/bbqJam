@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://chyqnaqmaf0wv"]
+[gd_scene load_steps=16 format=3 uid="uid://chyqnaqmaf0wv"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Minigame.gd" id="1_mskjo"]
 [ext_resource type="PackedScene" uid="uid://dr2lx5x2lrj17" path="res://src/Minigame/Scenes/Sausage.tscn" id="1_x8wx6"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cfb7fb4ex0fkm" path="res://media/Minigame/button_down.png" id="7_0wgun"]
 [ext_resource type="AudioStream" uid="uid://vox4gwnng3sq" path="res://media/Sounds/analog-appliance-button-15-186961.mp3" id="8_c1qwn"]
 [ext_resource type="Texture2D" uid="uid://cu5sluywicswh" path="res://media/Openspace/Excel.png" id="12_l0hof"]
+[ext_resource type="Texture2D" uid="uid://diywovkohdsay" path="res://media/Openspace/Start.png" id="13_towhu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tnjnv"]
 
@@ -95,6 +96,12 @@ z_index = 2
 position = Vector2(1.50005, -34)
 scale = Vector2(5.99062, 5.98823)
 texture = ExtResource("12_l0hof")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(0.125088, 505.5)
+scale = Vector2(5.98672, 6.3)
+texture = ExtResource("13_towhu")
 
 [connection signal="pressed" from="Control/SausageSpawner" to="." method="_on_sausage_spawner_pressed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
