@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=21 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://vgbgtyrk7qv6" path="res://src/Clock/clock.tscn" id="6_pfdq3"]
 [ext_resource type="AudioStream" uid="uid://d3sij1jh2sesl" path="res://media/Sounds/office-ambience-24734.mp3" id="8_sdr7j"]
 [ext_resource type="Texture2D" uid="uid://cdlck7uqknnl4" path="res://media/Openspace/center-handle.png" id="10_3hoql"]
+[ext_resource type="Texture2D" uid="uid://xsweaevmpd6u" path="res://media/Openspace/MonitorBg.png" id="17_0f1mc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vxveo"]
 animations = [{
@@ -153,3 +154,18 @@ scale = Vector2(0.443159, 0.443159)
 position = Vector2(950, 459)
 stream = ExtResource("8_sdr7j")
 autoplay = true
+
+[node name="MonitorBg" type="Sprite2D" parent="."]
+position = Vector2(972, 810)
+rotation = -0.00596531
+scale = Vector2(1.25625, 1.08788)
+texture = ExtResource("17_0f1mc")
+
+[node name="ColorRect" type="ColorRect" parent="MonitorBg"]
+z_index = 3
+material = SubResource("ShaderMaterial_ep8o5")
+offset_left = -160.0
+offset_top = -83.0
+offset_right = 160.0
+offset_bottom = 84.0
+mouse_filter = 2
