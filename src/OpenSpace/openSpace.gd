@@ -15,10 +15,10 @@ var confirmQuitCheck = true
 
 # Define the key for switching views
 const SWITCH_VIEW_KEY = KEY_TAB
-var minigameView = false
 
 @onready var openspace_cam = $Openspace_Cam
 @onready var minigame_cam = $Minigame_Cam
+@onready var minigame = $Minigame_Cam/Minigame
 
 
 func toggle_sprites():
@@ -28,7 +28,7 @@ func toggle_sprites():
 		show_excel_sprite = !show_excel_sprite
 		excel_sprite.visible = show_excel_sprite
 		game_sprite.visible = not show_excel_sprite
-		
+		minigame.set_excel_visibility(show_excel_sprite)
 		await get_tree().create_timer(0.2).timeout
 		can_toggle = true
 
@@ -86,7 +86,6 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed:
 			if event.keycode == SWITCH_VIEW_KEY:
-				minigameView != minigameView
 				swapCamera()
 
 func swapCamera():
@@ -95,6 +94,9 @@ func swapCamera():
 		minigame_cam.make_current()
 	else:
 		openspace_cam.make_current()
+	await get_tree().create_timer(0.5).timeout
+	Global.minigameView = !Global.minigameView
+	
 
 func subscribeCancelQuit():
 	confirmQuitCheck = true
