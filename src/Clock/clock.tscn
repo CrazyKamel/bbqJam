@@ -13,7 +13,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_oibwh")
 
 [node name="HourHand" type="Sprite2D" parent="."]
-scale = Vector2(2, 5)
+scale = Vector2(2.5, 3.5)
 texture = ExtResource("2_j01d7")
 offset = Vector2(1, 1)
 
