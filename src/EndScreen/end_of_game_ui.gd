@@ -2,8 +2,8 @@ extends Control
 
 var scoreToDisplay : int
 @export var labelToWrite : Label
-@export var logoWin : Sprite2D
-@export var logoLose : Sprite2D
+@export var logoWin : game_spriteD
+@export var logoLose : game_spriteD
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -10,7 +10,7 @@ var state = 0
 
 var time_cooking = 0.0
 
-@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var animated_sprite_2d = $Animatedgame_spriteD
 
 func _ready():
 	get_parent().connect_to_pickable(self)
@@ -24,17 +24,17 @@ func _process(delta):
 			if ( time_cooking >= 5 ):
 				state = 1
 				print("Sausage cooking!")
-				$AnimatedSprite2D.animation = "Cooking"
+				$Animatedgame_spriteD.animation = "Cooking"
 		1:
 			if ( time_cooking >= 15 ):
 				state = 2
 				print("Sausage cooked!")
-				$AnimatedSprite2D.animation = "Cooked"
+				$Animatedgame_spriteD.animation = "Cooked"
 		2:
 			if ( time_cooking >= 25 ):
 				state = 3
 				print("Sausage burnt!")
-				$AnimatedSprite2D.animation = "Burnt"
+				$Animatedgame_spriteD.animation = "Burnt"
 				$CPUParticles2D.emitting = true
 				$SausageAudio.stream = burning_sound
 				$SausageAudio.play()

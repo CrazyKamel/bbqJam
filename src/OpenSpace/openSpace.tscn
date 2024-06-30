@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://i4iw8i3urktw"]
+[gd_scene load_steps=23 format=3 uid="uid://i4iw8i3urktw"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://d3sij1jh2sesl" path="res://media/Sounds/office-ambience-24734.mp3" id="8_sdr7j"]
 [ext_resource type="Texture2D" uid="uid://cdlck7uqknnl4" path="res://media/Openspace/center-handle.png" id="10_3hoql"]
 [ext_resource type="Texture2D" uid="uid://xsweaevmpd6u" path="res://media/Openspace/MonitorBg.png" id="17_0f1mc"]
+[ext_resource type="Texture2D" uid="uid://c1fkr21org56e" path="res://media/Openspace/excel plqceholder.png" id="18_mbu8o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vxveo"]
 animations = [{
@@ -102,9 +103,35 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jr8sh"]
+shader = ExtResource("4_wsan7")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.01
+shader_parameter/scanlines_width = 0.064
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.05
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 0.8
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.4
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("excel_sprite", "game_sprite")]
 script = ExtResource("1_u6x1y")
 collegue = ExtResource("2_k6vcc")
+excel_sprite = NodePath("Excel")
+game_sprite = NodePath("GameRender")
 
 [node name="Openspace_Cam" type="Camera2D" parent="."]
 position = Vector2(960, 540)
@@ -156,6 +183,7 @@ stream = ExtResource("8_sdr7j")
 autoplay = true
 
 [node name="MonitorBg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(972, 810)
 rotation = -0.00596531
 scale = Vector2(1.25625, 1.08788)
@@ -164,6 +192,26 @@ texture = ExtResource("17_0f1mc")
 [node name="ColorRect" type="ColorRect" parent="MonitorBg"]
 z_index = 3
 material = SubResource("ShaderMaterial_ep8o5")
+offset_left = -160.0
+offset_top = -83.0
+offset_right = 160.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="Excel" type="Sprite2D" parent="."]
+position = Vector2(970.25, 809.953)
+scale = Vector2(0.36334, 0.244858)
+texture = ExtResource("18_mbu8o")
+
+[node name="GameRender" type="Sprite2D" parent="."]
+position = Vector2(972, 810)
+rotation = -0.00596531
+scale = Vector2(1.25625, 1.08788)
+texture = ExtResource("17_0f1mc")
+
+[node name="ColorRect" type="ColorRect" parent="GameRender"]
+z_index = 3
+material = SubResource("ShaderMaterial_jr8sh")
 offset_left = -160.0
 offset_top = -83.0
 offset_right = 160.0
