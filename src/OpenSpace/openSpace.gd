@@ -3,6 +3,8 @@ extends Node2D
 var confirmQuit = preload("res://src/ConfirmQuit/confirmQuit.tscn")
 @export var collegue: PackedScene
 var timer := Timer.new()
+var doorTimer := Timer.new()
+var retourJohn = false
 
 var confirmQuitCheck = true
 
@@ -45,6 +47,11 @@ func _ready():
 	add_child(timer)
 	timer.start()
 	$Clock.gameTimesUp.connect(onGameEnd);
+	doorTimer.one_shot = false
+	doorTimer.wait_time = randi_range(10, 20) 
+	doorTimer.connect("timeout", _openDoor)
+	add_child(doorTimer)
+	doorTimer.start()
 	pass
 
 
@@ -54,6 +61,13 @@ func _process(delta):
 		Global.openspaceScore += 20
 		if Global.openspaceScore%100 == 0:
 			print(Global.openspaceScore)
+	if $Openspace_Cam/Office/John.visible == true:
+		if $Openspace_Cam/Office/John.position.x != 0 && ! retourJohn: 
+			$Openspace_Cam/Office/John.position = $Openspace_Cam/Office/John.position.lerp(Vector2(0,0),25*delta)
+		if $Openspace_Cam/Office/John.position.x < 0.0000001 || retourJohn :
+			retourJohn = true
+			$Openspace_Cam/Office/John.position = $Openspace_Cam/Office/John.position.lerp(Vector2(100,0),1*delta)
+		
 	pass
 
 func _input(event):
@@ -79,3 +93,44 @@ func subscribeCancelQuit():
 func onGameEnd():
 		Global.goto_scene("res://src/backgroundEnd/end.tscn")
 		
+		
+func _openDoor():
+	doorTimer.wait_time = randi_range(10, 20) 
+	var rand = randi_range(0,1)
+	match rand:
+		0:
+			_openDoorLeft()
+		1:
+			_openDoorRight()
+
+func _openDoorLeft():
+	$"Openspace_Cam/Office/Door-Left".play("opening")
+	$Openspace_Cam/Office/LeftDoorAudioStreamPlayer2D.play()
+	await get_tree().create_timer(1).timeout
+	$"Openspace_Cam/Office/Door-Left".play("closed")
+	await get_tree().create_timer(0.5).timeout
+	$"Openspace_Cam/Office/Door-Left".play("opening")
+	await get_tree().create_timer(0.5).timeout
+	$"Openspace_Cam/Office/Door-Left".play("open")
+	#$Openspace_Cam/Office/LeftDoorCreakingAudioStreamPlayer2D.play()
+	await get_tree().create_timer(9).timeout
+	$"Openspace_Cam/Office/Door-Left".play("closed")
+
+func _openDoorRight():
+	$Openspace_Cam/Office/John.position.x = 100
+	$"Openspace_Cam/Office/Door-Right".play("opening")
+	$Openspace_Cam/Office/RightDoorAudioStreamPlayer2D.play()
+	await get_tree().create_timer(1).timeout
+	$"Openspace_Cam/Office/Door-Right".play("closed")
+	await get_tree().create_timer(0.5).timeout
+	$"Openspace_Cam/Office/Door-Right".play("opening")
+	await get_tree().create_timer(0.5).timeout
+	$"Openspace_Cam/Office/Door-Right".play("open")
+	#$Openspace_Cam/Office/RightDoorCreakingAudioStreamPlayer2D.play()
+	await get_tree().create_timer(2).timeout
+	$Openspace_Cam/Office/John.visible = true
+	await get_tree().create_timer(2).timeout
+	$Openspace_Cam/Office/John.visible = false
+	retourJohn = false
+	await get_tree().create_timer(2).timeout
+	$"Openspace_Cam/Office/Door-Right".play("closed")
