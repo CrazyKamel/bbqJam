@@ -12,6 +12,9 @@ var openspaceScore = 0
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 
+func coinflip():
+	return randf() > 0.5
+
 func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
