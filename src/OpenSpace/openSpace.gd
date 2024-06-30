@@ -12,6 +12,7 @@ var can_toggle = true
 var timer := Timer.new()
 var doorTimer := Timer.new()
 var retourJohn = false
+var retourThea = false
 
 var confirmQuitCheck = true
 
@@ -62,7 +63,7 @@ func _spawnCollegue():
 	#collegue1.position = Vector2(randf_range(0.0,1920.0), randf_range(0.0, 1080.0))
 	collegue1.position = Vector2(50,50)
 	add_child(collegue1)
-	timer.wait_time = randi_range(3, 5)
+	timer.wait_time = randi_range(5, 10)
 	pass
 
 # Called when the node enters the scene tree for the first time.
@@ -72,7 +73,7 @@ func _ready():
 	game_sprite.visible = false
 	
 	openspace_cam.make_current()
-	timer.one_shot = true
+	timer.one_shot = false
 	timer.wait_time = randi_range(1, 5) 
 	timer.connect("timeout", _spawnCollegue)
 	add_child(timer)
@@ -100,6 +101,12 @@ func _process(delta):
 		if $Openspace_Cam/Office/John.position.x < 0.0000001 || retourJohn :
 			retourJohn = true
 			$Openspace_Cam/Office/John.position = $Openspace_Cam/Office/John.position.lerp(Vector2(100,0),1*delta)
+	if $Openspace_Cam/Office/Thea.visible == true:
+		if $Openspace_Cam/Office/Thea.position.x < -450 && ! retourThea: 
+			$Openspace_Cam/Office/Thea.position = $Openspace_Cam/Office/Thea.position.lerp(Vector2(-450,150),25*delta)
+		if $Openspace_Cam/Office/Thea.position.x > -449.99999 || retourThea :
+			retourThea = true
+			$Openspace_Cam/Office/Thea.position = $Openspace_Cam/Office/Thea.position.lerp(Vector2(-650,150),1*delta)
 		
 	pass
 
@@ -147,6 +154,7 @@ func _openDoor():
 			_openDoorRight()
 
 func _openDoorLeft():
+	$Openspace_Cam/Office/Thea.position = Vector2(-650,150)
 	$"Openspace_Cam/Office/Door-Left".play("opening")
 	$Openspace_Cam/Office/LeftDoorAudioStreamPlayer2D.play()
 	await get_tree().create_timer(1).timeout
@@ -156,11 +164,16 @@ func _openDoorLeft():
 	await get_tree().create_timer(0.5).timeout
 	$"Openspace_Cam/Office/Door-Left".play("open")
 	#$Openspace_Cam/Office/LeftDoorCreakingAudioStreamPlayer2D.play()
-	await get_tree().create_timer(9).timeout
+	await get_tree().create_timer(2).timeout
+	$Openspace_Cam/Office/Thea.visible = true
+	await get_tree().create_timer(2).timeout
+	$Openspace_Cam/Office/Thea.visible = false
+	retourThea = false
+	await get_tree().create_timer(2).timeout
 	$"Openspace_Cam/Office/Door-Left".play("closed")
 
 func _openDoorRight():
-	$Openspace_Cam/Office/John.position.x = 100
+	$Openspace_Cam/Office/John.position = Vector2(100,0)
 	$"Openspace_Cam/Office/Door-Right".play("opening")
 	$Openspace_Cam/Office/RightDoorAudioStreamPlayer2D.play()
 	await get_tree().create_timer(1).timeout
