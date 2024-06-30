@@ -56,7 +56,7 @@ jobs:
           path: game_web.zip
   linux:
     runs-on: ubuntu-latest
-    if: ${{ false }}  # disable for now
+    if:
     permissions:
       contents: write
 
@@ -87,7 +87,7 @@ jobs:
           path: game_linux.zip
   windows:
     runs-on: ubuntu-latest
-    if: ${{ false }}  # disable for now
+    if:
     permissions:
       contents: write
 
