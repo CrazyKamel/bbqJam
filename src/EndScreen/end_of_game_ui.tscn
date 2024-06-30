@@ -1,16 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl5ajowdu5n3q"]
+[gd_scene load_steps=10 format=3 uid="uid://dl5ajowdu5n3q"]
 
 [ext_resource type="Texture2D" uid="uid://b00b0dgrax2ng" path="res://media/logo_lost.png" id="1_nretu"]
 [ext_resource type="Script" path="res://src/EndScreen/end_of_game_ui.gd" id="1_pha8b"]
 [ext_resource type="Texture2D" uid="uid://cm2qvgy0g5aji" path="res://media/logo_win.png" id="2_a6w36"]
+[ext_resource type="Texture2D" uid="uid://chnxphomyjnl" path="res://media/Ui/retour travail.png" id="4_8dphc"]
+[ext_resource type="Texture2D" uid="uid://d2jdrtat1l6ci" path="res://media/Ui/Depart vacances.png" id="5_yg20y"]
 
 [sub_resource type="SystemFont" id="SystemFont_nwovr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qap06"]
 font = SubResource("SystemFont_nwovr")
 font_size = 60
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
-[node name="endScreen" type="Control" node_paths=PackedStringArray("labelToWrite", "logoWin", "logoLose")]
+[sub_resource type="SystemFont" id="SystemFont_g13m4"]
+font_names = PackedStringArray("Georgia")
+
+[sub_resource type="LabelSettings" id="LabelSettings_xbql0"]
+font = SubResource("SystemFont_g13m4")
+font_size = 200
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+
+[node name="endScreen" type="Control" node_paths=PackedStringArray("labelToWrite", "labelTitle", "logoWin", "logoLose")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pha8b")
 labelToWrite = NodePath("Label")
+labelTitle = NodePath("Title label")
 logoWin = NodePath("LogoWin")
 logoLose = NodePath("LogoLost")
 
@@ -29,6 +43,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("1_nretu")
 
 [node name="LogoWin" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(961, 117)
 scale = Vector2(2, 2)
 skew = 0.251327
@@ -36,36 +51,43 @@ texture = ExtResource("2_a6w36")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_top = 226.0
+offset_top = 300.0
 offset_right = 1921.0
-offset_bottom = 504.0
+offset_bottom = 578.0
 text = "Tu as réussi à obtenir X jours de congés !"
 label_settings = SubResource("LabelSettings_qap06")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ButtonReplay" type="Button" parent="."]
-custom_minimum_size = Vector2(600, 150)
+[node name="ButtonReplay" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 690.0
-offset_top = 613.0
-offset_right = 1290.0
-offset_bottom = 763.0
+offset_left = 721.0
+offset_top = 615.0
+offset_right = 1176.0
+offset_bottom = 772.0
+scale = Vector2(1.2, 1.2)
 pivot_offset = Vector2(-1, 0)
-theme_override_font_sizes/font_size = 40
-text = "Retourner Travailler"
+texture_normal = ExtResource("4_8dphc")
 
-[node name="ButtonQuit" type="Button" parent="."]
-custom_minimum_size = Vector2(600, 150)
+[node name="ButtonQuit" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 690.0
-offset_top = 836.0
-offset_right = 1290.0
-offset_bottom = 986.0
+offset_left = 718.0
+offset_top = 845.0
+offset_right = 1173.0
+offset_bottom = 1002.0
+scale = Vector2(1.2, 1.2)
 pivot_offset = Vector2(-1, 0)
-theme_override_font_sizes/font_size = 40
-text = "Partir en vacances"
+texture_normal = ExtResource("5_yg20y")
+
+[node name="Title label" type="Label" parent="."]
+layout_mode = 0
+offset_top = -9.0
+offset_right = 1914.0
+offset_bottom = 210.0
+text = "En vacances"
+label_settings = SubResource("LabelSettings_xbql0")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="ButtonReplay" to="." method="_on_button_replay_pressed"]
 [connection signal="pressed" from="ButtonQuit" to="." method="_on_button_quit_pressed"]
