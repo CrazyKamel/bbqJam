@@ -45,24 +45,44 @@ func calc_direction():
 func got_to_dest():
 	frozen = true
 	if selfSubType == subType.FRIEND:
-		if aller == false && position_visee == position_porte:
+		if aller: # Aller
+			if position_visee == position_porte: # Arrivé à la porte (aller)
+				print("Arrivée à la porte, on repart dans 1s")
+				position_visee = position_side_desk
+				await get_tree().create_timer(1).timeout
+				frozen = false
+			elif position_visee == position_side_desk: # Arrivé au bureau
+				print("Arrivée au bureau, on repart dans 15s")
+				aller = false
+				position_visee = position_porte
+				await get_tree().create_timer(15).timeout
+				print("Départ vers la porte")
+				frozen = false
+				pass
+		else: # Retour
+			if position_visee == position_porte: # Arrivé à la porte (retour)
+				print("Arrivée à la porte (retour)")
+				position_visee = startPosses["rightStartPos"] if Global.coinflip() else startPosses["leftStartPos"]
+				print("Départ vers la sortie : ")
+				print(position_visee)
+				frozen = false
+			else: # Arrivé au bout
+				print("Arrivée au bout, on le bute ce chien")
+				get_parent().collegueDiedRIP()
+				queue_free()
+	else:
+		if aller:
+			print("Arrivée à la porte, départ dans 2s")
 			position_visee = startPosses["rightStartPos"] if Global.coinflip() else startPosses["leftStartPos"]
-			frozen = false
-		elif aller && position_visee == position_porte:
-			position_visee = position_side_desk
+			await get_tree().create_timer(2).timeout
+			print("Départ vers la sortie : ")
+			print(position_visee)
+			aller = false
 			frozen = false
 		else:
-			await get_tree().create_timer(15).timeout
-			position_visee = position_porte
-			frozen = false
-	else:
-		if !aller:
 			print("Collegue killed")
 			get_parent().collegueDiedRIP()
 			queue_free()
-		else:
-			await get_tree().create_timer(2).timeout
-	aller = false
 	pass
 
 # Called when the node enters the scene tree for the first time.

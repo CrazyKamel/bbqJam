@@ -39,7 +39,7 @@ func _spawnCollegue():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	openspace_cam.make_current()
-	timer.one_shot = false
+	timer.one_shot = true
 	timer.wait_time = randi_range(1, 5) 
 	timer.connect("timeout", _spawnCollegue)
 	add_child(timer)
