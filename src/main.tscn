@@ -42,17 +42,10 @@ offset_bottom = 707.0
 texture_normal = ExtResource("3_5phw1")
 
 [node name="QuitButton" type="TextureButton" parent="."]
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -230.0
-offset_top = 200.0
-offset_right = 225.0
-offset_bottom = 357.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 733.0
+offset_top = 735.0
+offset_right = 1188.0
+offset_bottom = 892.0
 texture_normal = ExtResource("4_d7ydb")
 
 [node name="Label" type="Label" parent="."]
