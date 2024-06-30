@@ -14,6 +14,8 @@ func _process(delta):
 func _on_start_button_pressed():
 	Global.minigameScore = 0
 	Global.openspaceScore = 0
+	Global.gameEnded = false
+	Global.gameWon = false
 	Global.goto_scene("res://src/OpenSpace/openSpace.tscn")
 
 
