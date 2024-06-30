@@ -1,5 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://brs6u78mwggbp"]
-
+[gd_scene load_steps=27 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
@@ -22,6 +21,10 @@
 [ext_resource type="AudioStream" uid="uid://du5461pwlyrwm" path="res://media/Openspace/door-creaking.mp3" id="12_8p7u3"]
 [ext_resource type="Texture2D" uid="uid://csqsnt4f3mvq5" path="res://media/Openspace/annes.png" id="14_orakg"]
 [ext_resource type="Texture2D" uid="uid://xsweaevmpd6u" path="res://media/Openspace/MonitorBg.png" id="17_0f1mc"]
+[ext_resource type="Texture2D" uid="uid://c1fkr21org56e" path="res://media/Openspace/excel plqceholder.png" id="22_le80g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05ljb"]
+size = Vector2(156, 80.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vxveo"]
 animations = [{
@@ -107,12 +110,20 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_05ljb"]
-size = Vector2(156, 80.5)
-
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("excel_sprite", "game_sprite")]
 script = ExtResource("1_u6x1y")
 collegue = ExtResource("2_k6vcc")
+excel_sprite = NodePath("Excel2")
+game_sprite = NodePath("MonitorBg")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(972, 810)
+rotation = -0.00596531
+scale = Vector2(1.25625, 1.08788)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.60138, -3.11859)
+shape = SubResource("RectangleShape2D_05ljb")
 
 [node name="Openspace_Cam" type="Camera2D" parent="."]
 position = Vector2(960, 540)
@@ -178,7 +189,6 @@ position = Vector2(1021, 86)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Minigame_Cam/ColorRect/Area2D"]
 position = Vector2(688, -46)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_05ljb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -201,21 +211,20 @@ rotation = -0.00596531
 scale = Vector2(1.25625, 1.08788)
 texture = ExtResource("17_0f1mc")
 
-[node name="ColorRect" type="ColorRect" parent="MonitorBg"]
+[node name="Excel2" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(972.515, 810)
+scale = Vector2(0.374038, 0.255977)
+texture = ExtResource("22_le80g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
 z_index = 3
 material = SubResource("ShaderMaterial_ep8o5")
-offset_left = -160.0
-offset_top = -83.0
-offset_right = 160.0
-offset_bottom = 84.0
+offset_left = 770.0
+offset_top = 717.0
+offset_right = 1176.0
+offset_bottom = 901.0
 mouse_filter = 2
 
-[node name="Area2D" type="Area2D" parent="MonitorBg"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MonitorBg/Area2D"]
-position = Vector2(1.60138, -3.11859)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_05ljb")
-
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="input_event" from="Minigame_Cam/ColorRect/Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="input_event" from="MonitorBg/Area2D" to="." method="_on_area_2d_input_event"]

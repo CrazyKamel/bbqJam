@@ -2,6 +2,13 @@ extends Node2D
 
 var confirmQuit = preload("res://src/ConfirmQuit/confirmQuit.tscn")
 @export var collegue: PackedScene
+
+@export var excel_sprite : Sprite2D
+@export var game_sprite : Sprite2D
+
+var show_excel_sprite = true
+var can_toggle = true
+
 var timer := Timer.new()
 var doorTimer := Timer.new()
 var retourJohn = false
@@ -10,13 +17,23 @@ var confirmQuitCheck = true
 
 # Define the key for switching views
 const SWITCH_VIEW_KEY = KEY_TAB
-var officeZoomed = false
 
 @onready var openspace_cam = $Openspace_Cam
 @onready var minigame_cam = $Minigame_Cam
+@onready var minigame = $Minigame_Cam/Minigame
 
 var confirmQuitInstance
 
+func toggle_sprites():
+	if can_toggle:
+		can_toggle = false
+		print("Excel/Game")
+		show_excel_sprite = !show_excel_sprite
+		excel_sprite.visible = show_excel_sprite
+		game_sprite.visible = not show_excel_sprite
+		minigame.set_excel_visibility(show_excel_sprite)
+		await get_tree().create_timer(0.2).timeout
+		can_toggle = true
 
 func collegueDiedRIP():
 	print("HE DIED NOOOOOOOOOOOOOOOOO")
@@ -33,6 +50,12 @@ func collegueDiedRIP():
 
 	pass
 
+func someoneIsLooking():
+	Global.gameEnded = true
+	Global.gameWon = false
+	Global._sendEndGameSingal()
+	pass
+
 func _spawnCollegue():
 	print("Created collegue")
 	var collegue1 = collegue.instantiate()
@@ -44,6 +67,10 @@ func _spawnCollegue():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	excel_sprite.visible = true
+	game_sprite.visible = false
+	
 	openspace_cam.make_current()
 	timer.one_shot = true
 	timer.wait_time = randi_range(1, 5) 
@@ -63,6 +90,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("space"):
+		toggle_sprites()
 		Global.openspaceScore += 20
 		if Global.openspaceScore%100 == 0:
 			print(Global.openspaceScore)
@@ -87,7 +115,6 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed:
 			if event.keycode == SWITCH_VIEW_KEY:
-				# officeZoomed = !officeZoomed
 				swapCamera()
 
 func swapCamera():
@@ -96,6 +123,9 @@ func swapCamera():
 		minigame_cam.make_current()
 	else:
 		openspace_cam.make_current()
+	await get_tree().create_timer(0.5).timeout
+	Global.minigameView = !Global.minigameView
+	
 
 func subscribeCancelQuit():
 	confirmQuitCheck = true
