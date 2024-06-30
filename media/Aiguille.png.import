@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gm531h1oajwm"
-path="res://.godot/imported/distri.png-91872fec49a377a160ca732e22526e17.ctex"
+uid="uid://rtempcot3ibm"
+path="res://.godot/imported/Aiguille.png-f44c7a11dc58bfe99f41d8b2de90391f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/Minigame/distri.png"
-dest_files=["res://.godot/imported/distri.png-91872fec49a377a160ca732e22526e17.ctex"]
+source_file="res://media/Aiguille.png"
+dest_files=["res://.godot/imported/Aiguille.png-f44c7a11dc58bfe99f41d8b2de90391f.ctex"]
 
 [params]
 

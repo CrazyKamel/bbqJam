@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxi0bcv16xap0"]
+
+[ext_resource type="Script" path="res://src/Minigame/Scripts/Client.gd" id="1_uih7l"]
+[ext_resource type="Texture2D" uid="uid://7sbd3w7kmbtx" path="res://media/Minigame/bob.png" id="2_nmp4q"]
+[ext_resource type="AudioStream" uid="uid://377psjtksfda" path="res://media/Sounds/coin-collect.mp3" id="3_b7p7i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ff8r"]
+radius = 53.0
+height = 588.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dylj5"]
+size = Vector2(131, 42.5)
+
+[node name="Client" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource("1_uih7l")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-232, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="ClientCollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(56, -1)
+shape = SubResource("CapsuleShape2D_7ff8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("2_nmp4q")
+
+[node name="ClientCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(56, 1)
+shape = SubResource("CapsuleShape2D_7ff8r")
+
+[node name="PlateArea2D2" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="PlateCollisionShape2D2" type="CollisionShape2D" parent="PlateArea2D2"]
+position = Vector2(-45.5, -94.75)
+shape = SubResource("RectangleShape2D_dylj5")
+
+[node name="PlateCollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-45.5, -94.75)
+shape = SubResource("RectangleShape2D_dylj5")
+
+[node name="PointSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(446, 0)
+stream = ExtResource("3_b7p7i")
+
+[connection signal="body_entered" from="PlateArea2D2" to="." method="_on_plate_area_2d_2_body_entered"]
+[connection signal="body_exited" from="PlateArea2D2" to="." method="_on_plate_area_2d_2_body_exited"]

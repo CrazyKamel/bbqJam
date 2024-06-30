@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://chyqnaqmaf0wv"]
+[gd_scene load_steps=13 format=3 uid="uid://chyqnaqmaf0wv"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Minigame.gd" id="1_mskjo"]
 [ext_resource type="PackedScene" uid="uid://dr2lx5x2lrj17" path="res://src/Minigame/Scenes/Sausage.tscn" id="1_x8wx6"]
@@ -9,8 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://d2c2loe0mx2j3" path="res://media/Minigame/distrisaucisse.png" id="5_wewfr"]
 [ext_resource type="Texture2D" uid="uid://b45d7tn67m4yu" path="res://media/Minigame/button_up.png" id="6_wh5yq"]
 [ext_resource type="Texture2D" uid="uid://cfb7fb4ex0fkm" path="res://media/Minigame/button_down.png" id="7_0wgun"]
+[ext_resource type="AudioStream" uid="uid://vox4gwnng3sq" path="res://media/Sounds/analog-appliance-button-15-186961.mp3" id="8_c1qwn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tnjnv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2n33"]
+size = Vector2(175, 186)
 
 [node name="Minigame" type="Node2D"]
 script = ExtResource("1_mskjo")
@@ -19,7 +23,7 @@ sausage = ExtResource("1_x8wx6")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(6.56, 6.56)
+scale = Vector2(6.75625, 6.83636)
 texture = ExtResource("3_8s0t2")
 
 [node name="Sun" type="Sprite2D" parent="Background"]
@@ -47,6 +51,9 @@ texture_normal = ExtResource("6_wh5yq")
 texture_pressed = ExtResource("7_0wgun")
 stretch_mode = 0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control/SausageSpawner"]
+stream = ExtResource("8_c1qwn")
+
 [node name="SpawnPosition" type="Node2D" parent="Control"]
 position = Vector2(-560.563, -218)
 
@@ -62,4 +69,21 @@ shape = SubResource("WorldBoundaryShape2D_tnjnv")
 position = Vector2(-540, 224)
 scale = Vector2(3.98142, 3.98142)
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1118, 193)
+shape = SubResource("RectangleShape2D_v2n33")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 539.0
+offset_top = -515.0
+offset_right = 689.0
+offset_bottom = -468.0
+scale = Vector2(3, 3)
+
 [connection signal="pressed" from="Control/SausageSpawner" to="." method="_on_sausage_spawner_pressed"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

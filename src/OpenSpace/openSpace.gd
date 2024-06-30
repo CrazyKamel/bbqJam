@@ -4,7 +4,6 @@ var confirmQuit = preload("res://src/ConfirmQuit/confirmQuit.tscn")
 @export var collegue: PackedScene
 var timer := Timer.new()
 
-var score = 0
 var confirmQuitCheck = true
 
 # Define the key for switching views
@@ -44,18 +43,16 @@ func _ready():
 	timer.connect("timeout", _spawnCollegue)
 	add_child(timer)
 	timer.start()
-	#var cam_rid = minigame_cam.get_camera_rid()
-	#var viewport_rid = viewport_ecran.get_viewport_rid()
-	#RenderingServer.viewport_attach_camera(viewport_rid, cam_rid)
+	$Clock.gameTimesUp.connect(onGameEnd);
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("space"):
-		score += 20
-		if score%100 == 0:
-			print(score)
+		Global.openspaceScore += 20
+		if Global.openspaceScore%100 == 0:
+			print(Global.openspaceScore)
 	pass
 
 func _input(event):
@@ -78,3 +75,7 @@ func swapCamera():
 
 func subscribeCancelQuit():
 	confirmQuitCheck = true
+	
+func onGameEnd():
+		Global.goto_scene("res://src/backgroundEnd/end.tscn")
+		

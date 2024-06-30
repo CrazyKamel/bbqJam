@@ -1,70 +1,171 @@
-[gd_scene load_steps=10 format=3 uid="uid://i4iw8i3urktw"]
+[gd_scene load_steps=21 format=3 uid="uid://i4iw8i3urktw"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
-[ext_resource type="PackedScene" uid="uid://d15n6o6bdmmq2" path="res://src/Computer/computer.tscn" id="3_5jiol"]
+[ext_resource type="Texture2D" uid="uid://imyvcsymnbv4" path="res://media/Openspace/computer.png" id="3_5ugej"]
+[ext_resource type="Texture2D" uid="uid://dvaqk1nsk3lu5" path="res://media/Openspace/office-background.png" id="3_rt1xy"]
+[ext_resource type="Texture2D" uid="uid://ikwy3xblm8k4" path="res://media/Openspace/door-right.png" id="4_4d64j"]
+[ext_resource type="Texture2D" uid="uid://c1wsf211bm8d7" path="res://media/Openspace/left-handle.png" id="4_dm6l5"]
+[ext_resource type="Texture2D" uid="uid://q4vj1vk2keff" path="res://media/Openspace/door-left.png" id="4_q28mp"]
+[ext_resource type="Shader" path="res://src/Minigame/Shader/crt.gdshader" id="4_wsan7"]
+[ext_resource type="Texture2D" uid="uid://djfqmgh2n6h16" path="res://media/Openspace/left-handle-2.png" id="5_4rrqf"]
 [ext_resource type="PackedScene" uid="uid://chyqnaqmaf0wv" path="res://src/Minigame/Scenes/Minigame.tscn" id="5_aqbr6"]
-[ext_resource type="Texture2D" uid="uid://1t42qeso7ddf" path="res://media/bg-moche.png" id="5_jauns"]
-[ext_resource type="Texture2D" uid="uid://dyrvcjighccnl" path="res://media/pc-moche.png" id="6_77xk2"]
-[ext_resource type="Script" path="res://src/OpenSpace/SubViewport.gd" id="6_vrmti"]
+[ext_resource type="Texture2D" uid="uid://65a3bmpp5hq3" path="res://media/Openspace/right-handle-2.png" id="5_bf3my"]
+[ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="5_hbscr"]
+[ext_resource type="Texture2D" uid="uid://beshxlfbi6apt" path="res://media/Openspace/right-handle.png" id="6_n4d6h"]
+[ext_resource type="PackedScene" uid="uid://vgbgtyrk7qv6" path="res://src/Clock/clock.tscn" id="6_pfdq3"]
+[ext_resource type="AudioStream" uid="uid://d3sij1jh2sesl" path="res://media/Sounds/office-ambience-24734.mp3" id="8_sdr7j"]
+[ext_resource type="Texture2D" uid="uid://cdlck7uqknnl4" path="res://media/Openspace/center-handle.png" id="10_3hoql"]
+[ext_resource type="Texture2D" uid="uid://xsweaevmpd6u" path="res://media/Openspace/MonitorBg.png" id="17_0f1mc"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_7rf51"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_vxveo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dm6l5")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_q28mp")
+}],
+"loop": true,
+"name": &"open",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4rrqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dm6l5")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 2.0
+}]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_f5p7o"]
-viewport_path = NodePath("Node2D/SubViewport")
+[sub_resource type="SpriteFrames" id="SpriteFrames_pa7oi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_n4d6h")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4d64j")
+}],
+"loop": true,
+"name": &"open",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_n4d6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bf3my")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 1.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ep8o5"]
+shader = ExtResource("4_wsan7")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.01
+shader_parameter/scanlines_width = 0.064
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.05
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 0.8
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.4
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(-2305, 369)
 script = ExtResource("1_u6x1y")
 collegue = ExtResource("2_k6vcc")
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(2305, -369)
-
-[node name="SubViewport" type="SubViewport" parent="Node2D"]
-disable_3d = true
-snap_2d_transforms_to_pixel = true
-gui_disable_input = true
-size_2d_override_stretch = true
-script = ExtResource("6_vrmti")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/SubViewport"]
-mesh = SubResource("PlaneMesh_7rf51")
-
-[node name="Camera2D" type="Camera2D" parent="Node2D/SubViewport"]
-position = Vector2(1912, 3714)
-
-[node name="Minigame" parent="." instance=ExtResource("5_aqbr6")]
-position = Vector2(1912, 3707)
 
 [node name="Openspace_Cam" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
-[node name="Computer" parent="Openspace_Cam" instance=ExtResource("3_5jiol")]
-position = Vector2(11, 125)
+[node name="Office" type="Sprite2D" parent="Openspace_Cam"]
+texture = ExtResource("3_rt1xy")
+
+[node name="Door-Left" type="AnimatedSprite2D" parent="Openspace_Cam/Office"]
+sprite_frames = SubResource("SpriteFrames_vxveo")
+animation = &"opening"
+
+[node name="Door-Right" type="AnimatedSprite2D" parent="Openspace_Cam/Office"]
+sprite_frames = SubResource("SpriteFrames_pa7oi")
+animation = &"open"
+
+[node name="Center-Door-Handle" type="Sprite2D" parent="Openspace_Cam/Office"]
+texture = ExtResource("10_3hoql")
+
+[node name="Computer" type="Sprite2D" parent="Openspace_Cam"]
+texture = ExtResource("3_5ugej")
+
+[node name="Minigame_Cam" type="Camera2D" parent="."]
+position = Vector2(956, 1857)
+
+[node name="Minigame" parent="Minigame_Cam" instance=ExtResource("5_aqbr6")]
+position = Vector2(0, -7)
+
+[node name="ColorRect" type="ColorRect" parent="Minigame_Cam"]
+z_index = 3
+material = SubResource("ShaderMaterial_ep8o5")
+offset_left = -968.0
+offset_top = -561.0
+offset_right = 976.0
+offset_bottom = 546.0
+mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
-position = Vector2(4, 4)
-scale = Vector2(2.89867, 2.89867)
-texture = ExtResource("5_jauns")
+texture = ExtResource("5_hbscr")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-show_behind_parent = true
-position = Vector2(325, 399)
-scale = Vector2(1.88, 1.88)
-texture = ExtResource("6_77xk2")
-centered = false
+[node name="Clock" parent="." instance=ExtResource("6_pfdq3")]
+position = Vector2(767, 260)
+scale = Vector2(0.443159, 0.443159)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-offset_left = 798.0
-offset_top = 566.0
-offset_right = 1140.0
-offset_bottom = 777.0
-texture = SubResource("ViewportTexture_f5p7o")
-expand_mode = 1
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(950, 459)
+stream = ExtResource("8_sdr7j")
+autoplay = true
 
-[node name="Minigame_Cam" type="Camera2D" parent="."]
-position = Vector2(1912, 3714)
+[node name="MonitorBg" type="Sprite2D" parent="."]
+position = Vector2(972, 810)
+rotation = -0.00596531
+scale = Vector2(1.25625, 1.08788)
+texture = ExtResource("17_0f1mc")
+
+[node name="ColorRect" type="ColorRect" parent="MonitorBg"]
+z_index = 3
+material = SubResource("ShaderMaterial_ep8o5")
+offset_left = -160.0
+offset_top = -83.0
+offset_right = 160.0
+offset_bottom = 84.0
+mouse_filter = 2

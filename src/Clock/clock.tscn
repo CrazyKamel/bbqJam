@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://vgbgtyrk7qv6"]
+
+[ext_resource type="Script" path="res://src/Clock/clock.gd" id="1_wwfav"]
+[ext_resource type="Texture2D" uid="uid://rtempcot3ibm" path="res://media/Aiguille.png" id="2_j01d7"]
+[ext_resource type="Texture2D" uid="uid://c33j2fhtwp6yj" path="res://media/clock.png" id="2_oibwh"]
+
+[node name="Clock" type="Node2D"]
+script = ExtResource("1_wwfav")
+
+[node name="face" type="Sprite2D" parent="."]
+rotation = -0.00774738
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_oibwh")
+
+[node name="HourHand" type="Sprite2D" parent="."]
+scale = Vector2(2, 5)
+texture = ExtResource("2_j01d7")
+offset = Vector2(1, 1)
+
+[node name="MinuteHand" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 6)
+texture = ExtResource("2_j01d7")
+offset = Vector2(1, 1)
