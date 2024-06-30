@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d15n6o6bdmmq2"]
 
 [ext_resource type="Script" path="res://src/Computer/computer.gd" id="1_8g8vq"]
-[ext_resource type="Texture2D" uid="uid://c1fkr21org56e" path="res://media/Openspace/excel plqceholder.png" id="2_o5pge"]
+[ext_resource type="Texture2D" uid="uid://cu5sluywicswh" path="res://media/Openspace/Excel.png" id="2_q1n8s"]
 [ext_resource type="Texture2D" uid="uid://xsweaevmpd6u" path="res://media/Openspace/MonitorBg.png" id="3_yhkh5"]
 [ext_resource type="Shader" path="res://src/Minigame/Shader/crt.gdshader" id="4_x76ki"]
 
@@ -33,9 +33,9 @@ shader_parameter/vignette_opacity = 0.5
 script = ExtResource("1_8g8vq")
 
 [node name="Excel" type="Sprite2D" parent="."]
-position = Vector2(971, 805.75)
-scale = Vector2(0.363806, 0.252461)
-texture = ExtResource("2_o5pge")
+position = Vector2(972.5, 810)
+scale = Vector2(1.23438, 1)
+texture = ExtResource("2_q1n8s")
 
 [node name="Timer" type="Timer" parent="."]
 

@@ -10,6 +10,7 @@ var minigameScore = 0
 var openspaceScore = 0
 
 var minigameView = false
+var isPlaying = false
 
 var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.

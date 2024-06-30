@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b45d7tn67m4yu" path="res://media/Minigame/button_up.png" id="6_wh5yq"]
 [ext_resource type="Texture2D" uid="uid://cfb7fb4ex0fkm" path="res://media/Minigame/button_down.png" id="7_0wgun"]
 [ext_resource type="AudioStream" uid="uid://vox4gwnng3sq" path="res://media/Sounds/analog-appliance-button-15-186961.mp3" id="8_c1qwn"]
-[ext_resource type="Texture2D" uid="uid://c1fkr21org56e" path="res://media/Openspace/excel plqceholder.png" id="11_yykmn"]
+[ext_resource type="Texture2D" uid="uid://cu5sluywicswh" path="res://media/Openspace/Excel.png" id="12_l0hof"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tnjnv"]
 
@@ -92,9 +92,9 @@ scale = Vector2(3, 3)
 
 [node name="Excel" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(-2, 4)
-scale = Vector2(1.99977, 1.63438)
-texture = ExtResource("11_yykmn")
+position = Vector2(1.50005, -34)
+scale = Vector2(5.99062, 5.98823)
+texture = ExtResource("12_l0hof")
 
 [connection signal="pressed" from="Control/SausageSpawner" to="." method="_on_sausage_spawner_pressed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dfaag5mq77hip" path="res://media/Openspace/thea1.png" id="14_fm7pu"]
 [ext_resource type="Texture2D" uid="uid://xsweaevmpd6u" path="res://media/Openspace/MonitorBg.png" id="17_0f1mc"]
 [ext_resource type="Texture2D" uid="uid://3las52vexetc" path="res://media/Openspace/sketch1719758676669.png" id="17_vaq62"]
-[ext_resource type="Texture2D" uid="uid://c1fkr21org56e" path="res://media/Openspace/excel plqceholder.png" id="22_le80g"]
+[ext_resource type="Texture2D" uid="uid://cu5sluywicswh" path="res://media/Openspace/Excel.png" id="22_vdux5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05ljb"]
 size = Vector2(156, 80.5)
@@ -223,9 +223,9 @@ shape = SubResource("RectangleShape2D_05ljb")
 
 [node name="Excel2" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(972.515, 810)
-scale = Vector2(0.374038, 0.255977)
-texture = ExtResource("22_le80g")
+position = Vector2(973, 809)
+scale = Vector2(1.24375, 1.03529)
+texture = ExtResource("22_vdux5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 3

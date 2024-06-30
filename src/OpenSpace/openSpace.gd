@@ -19,6 +19,8 @@ var confirmQuitCheck = true
 # Define the key for switching views
 const SWITCH_VIEW_KEY = KEY_TAB
 
+var isLooking = false
+
 @onready var openspace_cam = $Openspace_Cam
 @onready var minigame_cam = $Minigame_Cam
 @onready var minigame = $Minigame_Cam/Minigame
@@ -30,6 +32,7 @@ func toggle_sprites():
 		can_toggle = false
 		print("Excel/Game")
 		show_excel_sprite = !show_excel_sprite
+		Global.isPlaying = !show_excel_sprite
 		excel_sprite.visible = show_excel_sprite
 		game_sprite.visible = not show_excel_sprite
 		minigame.set_excel_visibility(show_excel_sprite)
@@ -48,13 +51,15 @@ func collegueDiedRIP():
 		Global.gameEnded = true
 		Global.gameWon = false
 		Global._sendEndGameSingal()
-
 	pass
 
 func someoneIsLooking():
-	Global.gameEnded = true
-	Global.gameWon = false
-	Global._sendEndGameSingal()
+	print("Checking looking")
+	print(Global.isPlaying)
+	if Global.isPlaying:
+		Global.gameEnded = true
+		Global.gameWon = false
+		Global._sendEndGameSingal()
 	pass
 
 func _spawnCollegue():
@@ -108,6 +113,10 @@ func _process(delta):
 			retourThea = true
 			$Openspace_Cam/Office/Thea.position = $Openspace_Cam/Office/Thea.position.lerp(Vector2(-650,150),1*delta)
 		
+	
+	if isLooking:
+		someoneIsLooking()
+	
 	pass
 
 func _input(event):
@@ -126,12 +135,12 @@ func _input(event):
 
 func swapCamera():
 	print("Swapped")
+	Global.minigameView = !Global.minigameView
 	if openspace_cam.is_current():
 		minigame_cam.make_current()
 	else:
 		openspace_cam.make_current()
-	await get_tree().create_timer(0.5).timeout
-	Global.minigameView = !Global.minigameView
+	#await get_tree().create_timer(0.5).timeout
 	
 
 func subscribeCancelQuit():
@@ -166,8 +175,10 @@ func _openDoorLeft():
 	#$Openspace_Cam/Office/LeftDoorCreakingAudioStreamPlayer2D.play()
 	await get_tree().create_timer(2).timeout
 	$Openspace_Cam/Office/Thea.visible = true
+	isLooking = true
 	await get_tree().create_timer(2).timeout
 	$Openspace_Cam/Office/Thea.visible = false
+	isLooking = false
 	retourThea = false
 	await get_tree().create_timer(2).timeout
 	$"Openspace_Cam/Office/Door-Left".play("closed")
@@ -185,8 +196,10 @@ func _openDoorRight():
 	#$Openspace_Cam/Office/RightDoorCreakingAudioStreamPlayer2D.play()
 	await get_tree().create_timer(2).timeout
 	$Openspace_Cam/Office/John.visible = true
+
 	await get_tree().create_timer(2).timeout
 	$Openspace_Cam/Office/John.visible = false
+	
 	retourJohn = false
 	await get_tree().create_timer(2).timeout
 	$"Openspace_Cam/Office/Door-Right".play("closed")
