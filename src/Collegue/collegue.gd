@@ -4,7 +4,7 @@ extends Node2D
 
 var norme
 var vecteur_direction
-var position_porte = Vector2(300, 150)
+var position_porte = Vector2(750, 575)
 var position_visee = position_porte
 var position_side_desk = Vector2(700, 800)
 var starting_pos
@@ -22,7 +22,7 @@ var probaSpawnTypes = {"right":0.35,"left": 0.9}
 var probaSubTypes = {"friend":0.35,"classic": 0.9}
 
 
-var startPosses = {"rightStartPos": Vector2(1600,150), "leftStartPos": Vector2(150, 150), "bossStartPos": Vector2(960, 900)}
+var startPosses = {"rightStartPos": Vector2(1600,575), "leftStartPos": Vector2(150, 575), "bossStartPos": Vector2(960, 900)}
 
 var selfType
 
@@ -47,11 +47,13 @@ func got_to_dest():
 	if selfSubType == subType.FRIEND:
 		if aller: # Aller
 			if position_visee == position_porte: # Arrivé à la porte (aller)
+				$Sprite2D.z_index = 0
 				print("Arrivée à la porte, on repart dans 1s")
 				position_visee = position_side_desk
 				await get_tree().create_timer(1).timeout
 				frozen = false
 			elif position_visee == position_side_desk: # Arrivé au bureau
+				$Sprite2D.z_index = 0
 				print("Arrivée au bureau, on repart dans 15s")
 				aller = false
 				position_visee = position_porte
@@ -61,6 +63,7 @@ func got_to_dest():
 				pass
 		else: # Retour
 			if position_visee == position_porte: # Arrivé à la porte (retour)
+				$Sprite2D.z_index = -1
 				print("Arrivée à la porte (retour)")
 				position_visee = startPosses["rightStartPos"] if Global.coinflip() else startPosses["leftStartPos"]
 				print("Départ vers la sortie : ")
