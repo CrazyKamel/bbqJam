@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=11 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
@@ -68,7 +68,7 @@ texture = ExtResource("5_hbscr")
 centered = false
 
 [node name="Clock" parent="." instance=ExtResource("6_pfdq3")]
-position = Vector2(843, 194)
+position = Vector2(767, 260)
 scale = Vector2(0.443159, 0.443159)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
