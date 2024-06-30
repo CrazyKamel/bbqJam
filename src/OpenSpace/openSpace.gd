@@ -24,6 +24,10 @@ func collegueDiedRIP():
 		add_child(label)
 		timer.stop()
 		# GAME OVER
+		Global.gameEnded = true
+		Global.gameWon = false
+		Global._sendEndGameSingal()
+
 	pass
 
 func _spawnCollegue():
@@ -43,7 +47,7 @@ func _ready():
 	timer.connect("timeout", _spawnCollegue)
 	add_child(timer)
 	timer.start()
-	$Clock.gameTimesUp.connect(onGameEnd);
+	Global.gameTimesUp.connect(onGameEnd)
 	pass
 
 

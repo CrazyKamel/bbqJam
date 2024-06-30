@@ -9,9 +9,6 @@ var endtime = 17*3600
 var currentTime = 0
 var timeMultiplier = 60
 
-signal  gameTimesUp;
-var gameEnded = false;
-
 func _ready():
 	# Call the update_time function every frame
 	set_process(true)
@@ -19,9 +16,10 @@ func _ready():
 
 func _process(delta):
 	update_time(timeMultiplier * delta)
-	if(currentTime >= endtime and not gameEnded):
-		gameEnded = true
-		emit_signal("gameTimesUp")
+	if(currentTime >= endtime and not Global.gameEnded):
+		Global.gameEnded = true
+		Global.gameWon = true
+		Global._sendEndGameSingal()
 
 func update_time(newtime):
 	currentTime += newtime

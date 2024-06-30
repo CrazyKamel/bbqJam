@@ -10,7 +10,7 @@
 font = SubResource("SystemFont_nwovr")
 font_size = 60
 
-[node name="endScreen" type="Control" node_paths=PackedStringArray("labelToWrite")]
+[node name="endScreen" type="Control" node_paths=PackedStringArray("labelToWrite", "logoWin", "logoLose")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pha8b")
 labelToWrite = NodePath("Label")
+logoWin = NodePath("LogoWin")
+logoLose = NodePath("LogoLost")
 
 [node name="LogoLost" type="Sprite2D" parent="."]
 visible = false
