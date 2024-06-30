@@ -3,7 +3,6 @@ extends Node2D
 # References to the clock hands
 @onready var hour_hand = $HourHand
 @onready var minute_hand = $MinuteHand
-@onready var second_hand = $SecondHand
 
 var startTime = 9*3600
 var endtime = 17*3600
@@ -37,6 +36,5 @@ func update_time(newtime):
 	var hour_rotation = deg_to_rad((hours % 12) * 30 + minutes * 0.5)  # 360 degrees / 12 hours + minutes influence
 	
 	# Apply the rotation
-	second_hand.rotation = second_rotation
 	minute_hand.rotation = minute_rotation
 	hour_hand.rotation = hour_rotation
