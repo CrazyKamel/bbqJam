@@ -9,3 +9,6 @@ script = ExtResource("1_mgscf")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wkohf")
 centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)

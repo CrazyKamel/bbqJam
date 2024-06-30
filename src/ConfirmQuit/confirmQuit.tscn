@@ -29,31 +29,17 @@ label_settings = SubResource("LabelSettings_puv5j")
 horizontal_alignment = 1
 
 [node name="YesButton" type="TextureButton" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1200.0
-offset_top = -541.0
-offset_right = -745.0
-offset_bottom = -384.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -235.0
+offset_top = -2.0
+offset_right = 220.0
+offset_bottom = 155.0
 texture_normal = ExtResource("3_m5i65")
 
 [node name="NoButton" type="TextureButton" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1188.0
-offset_top = -734.0
-offset_right = -733.0
-offset_bottom = -577.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -235.0
+offset_top = -202.0
+offset_right = 220.0
+offset_bottom = -45.0
 texture_normal = ExtResource("2_adeoa")
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
