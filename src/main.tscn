@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_bnnuh"]
-[ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="2_l6o3g"]
+[ext_resource type="Texture2D" uid="uid://pjuo3bnhfm0t" path="res://media/Ui/fondMenu.png" id="2_1us4m"]
 [ext_resource type="Texture2D" uid="uid://4l5wcsypqoii" path="res://media/Ui/jouer.png" id="3_5phw1"]
 [ext_resource type="Texture2D" uid="uid://cvxcq1rrbinxl" path="res://media/Ui/Quitter.png" id="4_d7ydb"]
 
@@ -32,7 +32,7 @@ script = ExtResource("1_bnnuh")
 
 [node name="MenuBackground" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("2_l6o3g")
+texture = ExtResource("2_1us4m")
 
 [node name="StartButton" type="TextureButton" parent="."]
 offset_left = 730.0
