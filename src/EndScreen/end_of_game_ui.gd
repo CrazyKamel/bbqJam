@@ -32,6 +32,8 @@ func _on_button_replay_pressed():
 	Global.openspaceScore = 0
 	Global.gameEnded = false
 	Global.gameWon = false
+	Global.minigameView = false
+	Global.isPlaying = false
 	Global.goto_scene("res://src/OpenSpace/openSpace.tscn")
 	
 
