@@ -147,7 +147,7 @@ func subscribeCancelQuit():
 	confirmQuitCheck = true
 	
 func onGameEnd():
-	Global.goto_scene("res://src/backgroundEnd/end.tscn")
+	Global.goto_scene("res://src/backGroundEnd/end.tscn")
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
