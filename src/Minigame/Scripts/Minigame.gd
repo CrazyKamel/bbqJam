@@ -4,9 +4,17 @@ var held_object = false
 var timer := Timer.new()
 
 var canSpawn = true
+var excelVisible = true
 
 @export var sausage : PackedScene
+@export var excel_sprite: Sprite2D
+
 var client = preload("res://src/Minigame/Scenes/Client.tscn")
+
+func set_excel_visibility(vis):
+	excel_sprite.visible = vis
+	excelVisible = vis
+	pass
 
 func _process(delta):
 	$Label.text = "Score : " + str(Global.minigameScore)
@@ -39,11 +47,12 @@ func _unhandled_input(event):
 			held_object = null
 
 func _on_sausage_spawner_pressed():
-	var food_item = sausage.instantiate()
-	food_item.position = $Control/SpawnPosition.position
-	$Control/SausageSpawner/AudioStreamPlayer2D.play()
-	add_child(food_item)
-	
+	if !excelVisible && Global.minigameView:
+		var food_item = sausage.instantiate()
+		food_item.position = $Control/SpawnPosition.position
+		$Control/SausageSpawner/AudioStreamPlayer2D.play()
+		add_child(food_item)
+
 func _spawnClient():
 	print(canSpawn)
 	if canSpawn:

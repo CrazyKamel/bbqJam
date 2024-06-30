@@ -1,18 +1,19 @@
 extends Node2D
 
 # Declare member variables for the sprites
-@export var sprite1 : Sprite2D
-@export var sprite2 : Sprite2D
+@export var excel_sprite : Sprite2D
+@export var game_sprite : Sprite2D
 @export var timeToChange = 0.1
 
-var show_sprite1 = true
+var show_excel_sprite = true
 var can_toggle = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("Ready")
 	# Initially show only the first sprite
-	sprite1.visible = true
-	sprite2.visible = false
+	excel_sprite.visible = true
+	game_sprite.visible = false
 	
 	# Reference the timer node
 	var timer = $Timer
@@ -27,13 +28,16 @@ func _unhandled_input(event):
 
 # Function to toggle between sprites
 func toggle_sprites():
-	show_sprite1 = !show_sprite1
-	sprite1.visible = show_sprite1
-	sprite2.visible = not show_sprite1
+	can_toggle = false
+	
+	print("Excel/Game")
+	show_excel_sprite = !show_excel_sprite
+	excel_sprite.visible = show_excel_sprite
+	game_sprite.visible = not show_excel_sprite
 	
 	# Start the timer to block input
+	await get_tree().create_timer(0.5).timeout
 	can_toggle = false
-	$Timer.start()
 
 func _on_Timer_timeout():
 	# Re-enable input after the timer runs out

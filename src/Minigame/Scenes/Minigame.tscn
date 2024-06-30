@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://chyqnaqmaf0wv"]
+[gd_scene load_steps=15 format=3 uid="uid://chyqnaqmaf0wv"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Minigame.gd" id="1_mskjo"]
 [ext_resource type="PackedScene" uid="uid://dr2lx5x2lrj17" path="res://src/Minigame/Scenes/Sausage.tscn" id="1_x8wx6"]
@@ -11,15 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://b45d7tn67m4yu" path="res://media/Minigame/button_up.png" id="6_wh5yq"]
 [ext_resource type="Texture2D" uid="uid://cfb7fb4ex0fkm" path="res://media/Minigame/button_down.png" id="7_0wgun"]
 [ext_resource type="AudioStream" uid="uid://vox4gwnng3sq" path="res://media/Sounds/analog-appliance-button-15-186961.mp3" id="8_c1qwn"]
+[ext_resource type="Texture2D" uid="uid://c1fkr21org56e" path="res://media/Openspace/excel plqceholder.png" id="11_yykmn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tnjnv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2n33"]
 size = Vector2(175, 186)
 
-[node name="Minigame" type="Node2D"]
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("excel_sprite")]
 script = ExtResource("1_mskjo")
 sausage = ExtResource("1_x8wx6")
+excel_sprite = NodePath("Excel")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(0, -15)
@@ -87,6 +89,12 @@ offset_top = -435.0
 offset_right = 334.0
 offset_bottom = -388.0
 scale = Vector2(3, 3)
+
+[node name="Excel" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-2, 4)
+scale = Vector2(1.99977, 1.63438)
+texture = ExtResource("11_yykmn")
 
 [connection signal="pressed" from="Control/SausageSpawner" to="." method="_on_sausage_spawner_pressed"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
