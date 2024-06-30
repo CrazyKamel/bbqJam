@@ -1,10 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://i4iw8i3urktw"]
+
+[gd_scene load_steps=25 format=3 uid="uid://brs6u78mwggbp"]
+
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
 [ext_resource type="Texture2D" uid="uid://imyvcsymnbv4" path="res://media/Openspace/computer.png" id="3_5ugej"]
 [ext_resource type="Texture2D" uid="uid://dvaqk1nsk3lu5" path="res://media/Openspace/office-background.png" id="3_rt1xy"]
 [ext_resource type="Texture2D" uid="uid://ikwy3xblm8k4" path="res://media/Openspace/door-right.png" id="4_4d64j"]
+[ext_resource type="Texture2D" uid="uid://drat0atqcayka" path="res://media/Openspace/john.png" id="4_6ba8q"]
 [ext_resource type="Texture2D" uid="uid://c1wsf211bm8d7" path="res://media/Openspace/left-handle.png" id="4_dm6l5"]
 [ext_resource type="Texture2D" uid="uid://q4vj1vk2keff" path="res://media/Openspace/door-left.png" id="4_q28mp"]
 [ext_resource type="Shader" path="res://src/Minigame/Shader/crt.gdshader" id="4_wsan7"]
@@ -16,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://vgbgtyrk7qv6" path="res://src/Clock/clock.tscn" id="6_pfdq3"]
 [ext_resource type="AudioStream" uid="uid://d3sij1jh2sesl" path="res://media/Sounds/office-ambience-24734.mp3" id="8_sdr7j"]
 [ext_resource type="Texture2D" uid="uid://cdlck7uqknnl4" path="res://media/Openspace/center-handle.png" id="10_3hoql"]
+[ext_resource type="AudioStream" uid="uid://buwqee5ilgxnu" path="res://media/Openspace/rattling-door-81387.mp3" id="11_828wi"]
+[ext_resource type="AudioStream" uid="uid://du5461pwlyrwm" path="res://media/Openspace/door-creaking.mp3" id="12_8p7u3"]
+[ext_resource type="Texture2D" uid="uid://csqsnt4f3mvq5" path="res://media/Openspace/annes.png" id="14_orakg"]
 [ext_resource type="Texture2D" uid="uid://xsweaevmpd6u" path="res://media/Openspace/MonitorBg.png" id="17_0f1mc"]
 [ext_resource type="Texture2D" uid="uid://c1fkr21org56e" path="res://media/Openspace/excel plqceholder.png" id="18_mbu8o"]
 
@@ -25,7 +31,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_dm6l5")
 }],
-"loop": true,
+"loop": false,
 "name": &"closed",
 "speed": 0.0
 }, {
@@ -33,7 +39,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_q28mp")
 }],
-"loop": true,
+"loop": false,
 "name": &"open",
 "speed": 0.0
 }, {
@@ -46,7 +52,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"opening",
-"speed": 2.0
+"speed": 8.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pa7oi"]
@@ -55,7 +61,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_n4d6h")
 }],
-"loop": true,
+"loop": false,
 "name": &"closed",
 "speed": 0.0
 }, {
@@ -63,7 +69,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_4d64j")
 }],
-"loop": true,
+"loop": false,
 "name": &"open",
 "speed": 0.0
 }, {
@@ -76,7 +82,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"opening",
-"speed": 1.0
+"speed": 8.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ep8o5"]
@@ -98,7 +104,7 @@ shader_parameter/static_noise_intensity = 0.06
 shader_parameter/aberration = 4.75e-08
 shader_parameter/brightness = 0.8
 shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.4
+shader_parameter/warp_amount = 0.127
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
@@ -128,6 +134,10 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("excel_sprite", "game_sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05ljb"]
+size = Vector2(156, 80.5)
+
+[node name="Node2D" type="Node2D"]
 script = ExtResource("1_u6x1y")
 collegue = ExtResource("2_k6vcc")
 excel_sprite = NodePath("Excel")
@@ -139,34 +149,66 @@ position = Vector2(960, 540)
 [node name="Office" type="Sprite2D" parent="Openspace_Cam"]
 texture = ExtResource("3_rt1xy")
 
+[node name="John" type="Sprite2D" parent="Openspace_Cam/Office"]
+visible = false
+position = Vector2(100, 0)
+texture = ExtResource("4_6ba8q")
+
 [node name="Door-Left" type="AnimatedSprite2D" parent="Openspace_Cam/Office"]
 sprite_frames = SubResource("SpriteFrames_vxveo")
-animation = &"opening"
+animation = &"closed"
 
 [node name="Door-Right" type="AnimatedSprite2D" parent="Openspace_Cam/Office"]
 sprite_frames = SubResource("SpriteFrames_pa7oi")
-animation = &"open"
+animation = &"closed"
 
 [node name="Center-Door-Handle" type="Sprite2D" parent="Openspace_Cam/Office"]
 texture = ExtResource("10_3hoql")
+
+[node name="LeftDoorAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Openspace_Cam/Office"]
+position = Vector2(-660, 50)
+stream = ExtResource("11_828wi")
+
+[node name="RightDoorAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Openspace_Cam/Office"]
+position = Vector2(660, 25)
+stream = ExtResource("11_828wi")
+
+[node name="LeftDoorCreakingAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Openspace_Cam/Office"]
+position = Vector2(-660, 50)
+stream = ExtResource("12_8p7u3")
+
+[node name="RightDoorCreakingAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Openspace_Cam/Office"]
+position = Vector2(660, 25)
+stream = ExtResource("12_8p7u3")
+
+[node name="Annes" type="Sprite2D" parent="Openspace_Cam/Office"]
+visible = false
+texture = ExtResource("14_orakg")
 
 [node name="Computer" type="Sprite2D" parent="Openspace_Cam"]
 texture = ExtResource("3_5ugej")
 
 [node name="Minigame_Cam" type="Camera2D" parent="."]
-position = Vector2(956, 1857)
+position = Vector2(960, 1924)
 
 [node name="Minigame" parent="Minigame_Cam" instance=ExtResource("5_aqbr6")]
-position = Vector2(0, -7)
 
 [node name="ColorRect" type="ColorRect" parent="Minigame_Cam"]
 z_index = 3
 material = SubResource("ShaderMaterial_ep8o5")
-offset_left = -968.0
-offset_top = -561.0
-offset_right = 976.0
-offset_bottom = 546.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="Minigame_Cam/ColorRect"]
+position = Vector2(1021, 86)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Minigame_Cam/ColorRect/Area2D"]
+position = Vector2(688, -46)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_05ljb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -198,6 +240,7 @@ offset_right = 160.0
 offset_bottom = 84.0
 mouse_filter = 2
 
+
 [node name="Excel" type="Sprite2D" parent="."]
 position = Vector2(970.25, 809.953)
 scale = Vector2(0.36334, 0.244858)
@@ -217,3 +260,14 @@ offset_top = -83.0
 offset_right = 160.0
 offset_bottom = 84.0
 mouse_filter = 2
+
+[node name="Area2D" type="Area2D" parent="MonitorBg"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonitorBg/Area2D"]
+position = Vector2(1.60138, -3.11859)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_05ljb")
+
+[connection signal="input_event" from="Minigame_Cam/ColorRect/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="input_event" from="MonitorBg/Area2D" to="." method="_on_area_2d_input_event"]
+

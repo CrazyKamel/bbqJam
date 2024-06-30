@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dpjcoseqrw1uj" path="res://src/Minigame/Scenes/destroy_zone.tscn" id="3_emduw"]
 [ext_resource type="Texture2D" uid="uid://cruyk3u8cy2pn" path="res://media/Minigame/Sun.png" id="4_txwue"]
 [ext_resource type="PackedScene" uid="uid://bdli77reuq25y" path="res://src/Minigame/Scenes/Grill.tscn" id="4_yk232"]
+[ext_resource type="Texture2D" uid="uid://b1b0cgvm7vfur" path="res://media/Minigame/sausage_up.png" id="5_mk7uj"]
 [ext_resource type="Texture2D" uid="uid://d2c2loe0mx2j3" path="res://media/Minigame/distrisaucisse.png" id="5_wewfr"]
 [ext_resource type="Texture2D" uid="uid://b45d7tn67m4yu" path="res://media/Minigame/button_up.png" id="6_wh5yq"]
 [ext_resource type="Texture2D" uid="uid://cfb7fb4ex0fkm" path="res://media/Minigame/button_down.png" id="7_0wgun"]
@@ -22,19 +23,23 @@ script = ExtResource("1_mskjo")
 sausage = ExtResource("1_x8wx6")
 excel_sprite = NodePath("Excel")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(6.75625, 6.83636)
+position = Vector2(0, -15)
+scale = Vector2(6, 6)
 texture = ExtResource("3_8s0t2")
 
 [node name="Sun" type="Sprite2D" parent="Background"]
 position = Vector2(107.927, -52.7439)
 texture = ExtResource("4_txwue")
 
+[node name="Bar" type="Sprite2D" parent="."]
+position = Vector2(0, -522)
+scale = Vector2(6, 6)
+texture = ExtResource("5_mk7uj")
+
 [node name="Distrib" type="Sprite2D" parent="."]
-position = Vector2(-556.563, -387)
-scale = Vector2(5.55511, 5.55511)
+position = Vector2(-556, -339)
+scale = Vector2(6, 6)
 texture = ExtResource("5_wewfr")
 
 [node name="Control" type="Control" parent="."]
@@ -45,10 +50,11 @@ offset_bottom = 40.0
 
 [node name="SausageSpawner" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = -598.563
-offset_top = -459.0
-offset_right = -521.563
-offset_bottom = -382.0
+offset_left = -591.0
+offset_top = -413.0
+offset_right = -579.0
+offset_bottom = -400.0
+scale = Vector2(6, 6)
 texture_normal = ExtResource("6_wh5yq")
 texture_pressed = ExtResource("7_0wgun")
 stretch_mode = 0
@@ -57,7 +63,7 @@ stretch_mode = 0
 stream = ExtResource("8_c1qwn")
 
 [node name="SpawnPosition" type="Node2D" parent="Control"]
-position = Vector2(-560.563, -218)
+position = Vector2(-557, -163)
 
 [node name="ObjectDestroy" type="Node2D" parent="."]
 
@@ -78,10 +84,10 @@ position = Vector2(1118, 193)
 shape = SubResource("RectangleShape2D_v2n33")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 539.0
-offset_top = -515.0
-offset_right = 689.0
-offset_bottom = -468.0
+offset_left = 184.0
+offset_top = -435.0
+offset_right = 334.0
+offset_bottom = -388.0
 scale = Vector2(3, 3)
 
 [node name="Excel" type="Sprite2D" parent="."]
