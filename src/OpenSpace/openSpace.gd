@@ -50,6 +50,12 @@ func collegueDiedRIP():
 
 	pass
 
+func someoneIsLooking():
+	Global.gameEnded = true
+	Global.gameWon = false
+	Global._sendEndGameSingal()
+	pass
+
 func _spawnCollegue():
 	print("Created collegue")
 	var collegue1 = collegue.instantiate()

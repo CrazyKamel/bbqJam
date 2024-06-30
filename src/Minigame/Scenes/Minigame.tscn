@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://chyqnaqmaf0wv"]
+[gd_scene load_steps=15 format=3 uid="uid://chyqnaqmaf0wv"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Minigame.gd" id="1_mskjo"]
 [ext_resource type="PackedScene" uid="uid://dr2lx5x2lrj17" path="res://src/Minigame/Scenes/Sausage.tscn" id="1_x8wx6"]
