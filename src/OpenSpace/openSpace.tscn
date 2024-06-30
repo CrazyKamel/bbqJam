@@ -1,14 +1,81 @@
-[gd_scene load_steps=11 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=20 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/OpenSpace/openSpace.gd" id="1_u6x1y"]
 [ext_resource type="PackedScene" uid="uid://bjm1hhd336cw0" path="res://src/Collegue/collegue.tscn" id="2_k6vcc"]
-[ext_resource type="Texture2D" uid="uid://detcq4um2blw2" path="res://media/Openspace/office.png" id="3_3gx7i"]
 [ext_resource type="Texture2D" uid="uid://imyvcsymnbv4" path="res://media/Openspace/computer.png" id="3_5ugej"]
+[ext_resource type="Texture2D" uid="uid://dvaqk1nsk3lu5" path="res://media/Openspace/office-background.png" id="3_rt1xy"]
+[ext_resource type="Texture2D" uid="uid://ikwy3xblm8k4" path="res://media/Openspace/door-right.png" id="4_4d64j"]
+[ext_resource type="Texture2D" uid="uid://c1wsf211bm8d7" path="res://media/Openspace/left-handle.png" id="4_dm6l5"]
+[ext_resource type="Texture2D" uid="uid://q4vj1vk2keff" path="res://media/Openspace/door-left.png" id="4_q28mp"]
 [ext_resource type="Shader" path="res://src/Minigame/Shader/crt.gdshader" id="4_wsan7"]
+[ext_resource type="Texture2D" uid="uid://djfqmgh2n6h16" path="res://media/Openspace/left-handle-2.png" id="5_4rrqf"]
 [ext_resource type="PackedScene" uid="uid://chyqnaqmaf0wv" path="res://src/Minigame/Scenes/Minigame.tscn" id="5_aqbr6"]
+[ext_resource type="Texture2D" uid="uid://65a3bmpp5hq3" path="res://media/Openspace/right-handle-2.png" id="5_bf3my"]
 [ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="5_hbscr"]
+[ext_resource type="Texture2D" uid="uid://beshxlfbi6apt" path="res://media/Openspace/right-handle.png" id="6_n4d6h"]
 [ext_resource type="PackedScene" uid="uid://vgbgtyrk7qv6" path="res://src/Clock/clock.tscn" id="6_pfdq3"]
 [ext_resource type="AudioStream" uid="uid://d3sij1jh2sesl" path="res://media/Sounds/office-ambience-24734.mp3" id="8_sdr7j"]
+[ext_resource type="Texture2D" uid="uid://cdlck7uqknnl4" path="res://media/Openspace/center-handle.png" id="10_3hoql"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vxveo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dm6l5")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_q28mp")
+}],
+"loop": true,
+"name": &"open",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4rrqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dm6l5")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pa7oi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_n4d6h")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4d64j")
+}],
+"loop": true,
+"name": &"open",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_n4d6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bf3my")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 1.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ep8o5"]
 shader = ExtResource("4_wsan7")
@@ -42,7 +109,18 @@ collegue = ExtResource("2_k6vcc")
 position = Vector2(960, 540)
 
 [node name="Office" type="Sprite2D" parent="Openspace_Cam"]
-texture = ExtResource("3_3gx7i")
+texture = ExtResource("3_rt1xy")
+
+[node name="Door-Left" type="AnimatedSprite2D" parent="Openspace_Cam/Office"]
+sprite_frames = SubResource("SpriteFrames_vxveo")
+animation = &"opening"
+
+[node name="Door-Right" type="AnimatedSprite2D" parent="Openspace_Cam/Office"]
+sprite_frames = SubResource("SpriteFrames_pa7oi")
+animation = &"open"
+
+[node name="Center-Door-Handle" type="Sprite2D" parent="Openspace_Cam/Office"]
+texture = ExtResource("10_3hoql")
 
 [node name="Computer" type="Sprite2D" parent="Openspace_Cam"]
 texture = ExtResource("3_5ugej")
