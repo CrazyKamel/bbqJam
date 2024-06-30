@@ -1,15 +1,67 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxi0bcv16xap0"]
+[gd_scene load_steps=12 format=3 uid="uid://dxi0bcv16xap0"]
 
 [ext_resource type="Script" path="res://src/Minigame/Scripts/Client.gd" id="1_uih7l"]
 [ext_resource type="Texture2D" uid="uid://7sbd3w7kmbtx" path="res://media/Minigame/bob.png" id="2_nmp4q"]
 [ext_resource type="AudioStream" uid="uid://377psjtksfda" path="res://media/Sounds/coin-collect.mp3" id="3_b7p7i"]
+[ext_resource type="Texture2D" uid="uid://bw5b8aj6t1dm3" path="res://media/Minigame/SpeechBubble1.png" id="4_mvtfd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ff8r"]
 radius = 53.0
 height = 588.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dylj5"]
-size = Vector2(131, 42.5)
+size = Vector2(131, 34.625)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrdiu"]
+atlas = ExtResource("4_mvtfd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afoe8"]
+atlas = ExtResource("4_mvtfd")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6jdr"]
+atlas = ExtResource("4_mvtfd")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssrld"]
+atlas = ExtResource("4_mvtfd")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23xgf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrdiu")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afoe8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6jdr")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssrld")
+}],
+"loop": true,
+"name": &"ok",
+"speed": 5.0
+}]
 
 [node name="Client" type="StaticBody2D"]
 input_pickable = true
@@ -35,18 +87,25 @@ shape = SubResource("CapsuleShape2D_7ff8r")
 [node name="PlateArea2D2" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
+input_pickable = false
 
 [node name="PlateCollisionShape2D2" type="CollisionShape2D" parent="PlateArea2D2"]
-position = Vector2(-45.5, -94.75)
+position = Vector2(-48, -127)
 shape = SubResource("RectangleShape2D_dylj5")
 
 [node name="PlateCollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-45.5, -94.75)
+position = Vector2(-48, -95)
 shape = SubResource("RectangleShape2D_dylj5")
 
 [node name="PointSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(446, 0)
 stream = ExtResource("3_b7p7i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(59, -310)
+scale = Vector2(2.3125, 2.125)
+sprite_frames = SubResource("SpriteFrames_23xgf")
+animation = &"ok"
 
 [connection signal="body_entered" from="PlateArea2D2" to="." method="_on_plate_area_2d_2_body_entered"]
 [connection signal="body_exited" from="PlateArea2D2" to="." method="_on_plate_area_2d_2_body_exited"]
