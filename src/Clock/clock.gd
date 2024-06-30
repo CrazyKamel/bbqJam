@@ -7,7 +7,7 @@ extends Node2D
 var startTime = 9*3600
 var endtime = 17*3600
 var currentTime = 0
-var timeMultiplier = 60
+var timeMultiplier = 96
 
 func _ready():
 	# Call the update_time function every frame

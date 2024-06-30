@@ -13,6 +13,7 @@ var officeZoomed = false
 @onready var openspace_cam = $Openspace_Cam
 @onready var minigame_cam = $Minigame_Cam
 
+var confirmQuitInstance
 
 func collegueDiedRIP():
 	print("HE DIED NOOOOOOOOOOOOOOOOO")
@@ -60,10 +61,14 @@ func _process(delta):
 	pass
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel") && confirmQuitCheck:
-		var confirmQuitInstance = confirmQuit.instantiate()
-		add_child(confirmQuitInstance)
-		confirmQuitCheck = false
+	if event.is_action_pressed("ui_cancel"):
+		if confirmQuitCheck:
+			confirmQuitInstance = confirmQuit.instantiate()
+			add_child(confirmQuitInstance)
+			confirmQuitCheck = false
+		else:
+			subscribeCancelQuit();
+			confirmQuitInstance.queue_free()
 	if event is InputEventKey:
 		if event.pressed:
 			if event.keycode == SWITCH_VIEW_KEY:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://brs6u78mwggbp"]
+[gd_scene load_steps=11 format=3 uid="uid://brs6u78mwggbp"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_bnnuh"]
 [ext_resource type="Texture2D" uid="uid://b08bniekywvi4" path="res://media/grey-background.jpg" id="2_l6o3g"]
@@ -11,8 +11,22 @@
 [sub_resource type="LabelSettings" id="LabelSettings_bwx0j"]
 font = SubResource("SystemFont_dlvsn")
 font_size = 80
-outline_size = 20
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_eg02k"]
+font_names = PackedStringArray("Georgia")
+
+[sub_resource type="FontVariation" id="FontVariation_khm13"]
+base_font = SubResource("SystemFont_eg02k")
+
+[sub_resource type="LabelSettings" id="LabelSettings_am2uk"]
+font = SubResource("FontVariation_khm13")
+font_size = 140
+font_color = Color(0.291356, 0.386326, 0.127657, 1)
+outline_size = 20
+shadow_size = 40
+shadow_color = Color(0.478431, 0.576471, 0.772549, 0)
 
 [node name="Node" type="Node"]
 script = ExtResource("1_bnnuh")
@@ -43,6 +57,7 @@ grow_vertical = 2
 texture_normal = ExtResource("4_d7ydb")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -62,6 +77,16 @@ label_settings = SubResource("LabelSettings_bwx0j")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -7.0
+offset_top = 76.0
+offset_right = 1921.0
+offset_bottom = 248.0
+text = "En attendant les vacances"
+label_settings = SubResource("LabelSettings_am2uk")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
